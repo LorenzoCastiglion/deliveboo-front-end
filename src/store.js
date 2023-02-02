@@ -23,34 +23,27 @@ export const store = reactive({
 
     footerItems:[
         {
-            label: 'Store',
-            routeName: 'store',
+            label: 'Restaurants',
+            routeName: 'restaurants',
             storeItem:[
                 {
 
-                    pagename: 'Nails',
+                    pagename: 'Pizzerie',
                     url:"#"
                 },
                 {
-                    pagename: 'Creams',
+                    pagename: 'Cinese',
                     url:"#"
                 },
                 {
-                    pagename: 'Face',
+                    pagename: 'Steak-house',
                     url:"#"
                 },
                 {
-                    pagename: 'Body',
+                    pagename: 'Kebab',
                     url:"#"
                 },
-                {
-                    pagename: 'Hair',
-                    url:"#"
-                },
-                {
-                    pagename: 'Wellness',
-                    url:"#"
-                }
+               
 
             ]
         },

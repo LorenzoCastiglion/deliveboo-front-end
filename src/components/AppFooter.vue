@@ -3,10 +3,10 @@
     <div class="container">
         <div class="d-flex justify-content-between foot">
             <div>
-                <img class="img pt-3" src="../../public/img/logo.png" alt="">
+                <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
                 <!-- Copyright -->
                 <div class="mt-1   " style="background-color: rgba(0, 0, 0, 0.05);">
-                    © 2023 <span class="text-reset fw-bold">Boolness</span>
+                    2023 <span class="text-reset fw-bold">Codeat <sup>©</sup></span>
                 </div>
                 <!-- Copyright -->
             </div>
