@@ -23,7 +23,7 @@
        
             <div id="NavMobile" >
     
-            <dic class="d-flex justify-content-end"><button @click="isMenuOpen = !isMenuOpen"><i class="fa-regular" :class="isMenuOpen ? 'fa-circle-xmark' : 'fa-bars'"></i></button></dic>
+            <div class="d-flex justify-content-end"><button @click="isMenuOpen = !isMenuOpen"><i class="fa-regular" :class="isMenuOpen ? 'fa-circle-xmark' : 'fa-bars'"></i></button></div>
             <transition name="fade">
                 <div v-if="isMenuOpen" class=" text-end">
                     <ul class="navbar-nav  mb-2 mb-lg-0 ">
