@@ -3,7 +3,7 @@
         <header>
             <nav class="container navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
-                    <img  src="../../public/img/logo_text_b.png" alt="">
+                    <img class="logo" src="../../public/img/logo_text_b.png" alt="">
     
                     <div id="NavDesktop" class="collapse navbar-collapse justify-content-end" >
                         <ul class="navbar-nav  mb-2 mb-lg-0 ">
@@ -66,7 +66,9 @@
     <style lang="scss" scoped>
     @use './../assets/styles/partials/variables' as *;
     
-    
+    .logo{
+        width: 80px;
+    }
     
     
     
@@ -107,7 +109,7 @@
         -webkit-box-shadow: 0 1.5px 6px -1px $red;
       -moz-box-shadow: 0 1.5px 6px -1px $red;
       box-shadow: 0 1.5px 6px -1px $red;
-        margin-bottom: 30px;
+        
     }
     
     button{

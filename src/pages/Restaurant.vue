@@ -5,8 +5,21 @@
 </template>
 
 <script>
+import { store } from '../store'
     export default {
-        name: 'Restaurant'
+        name: 'Restaurant',
+
+        data(){
+            return {
+                
+                store,
+            }
+        },
+
+
+       
+        
+
     }
 </script>
 

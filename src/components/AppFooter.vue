@@ -1,24 +1,26 @@
 <template>
 
-    <div class="container">
-        <div class="d-flex justify-content-between foot">
-            <div>
-                <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
-                <!-- Copyright -->
-                <div class="mt-1   " style="background-color: rgba(0, 0, 0, 0.05);">
-                    2023 <span class="text-reset fw-bold">Codeat <sup>©</sup></span>
+    <footer>
+        <div class="container">
+            <div class="d-flex justify-content-between foot">
+                <div>
+                    <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
+                    <!-- Copyright -->
+                    <div class="mt-1 " >
+                        2023 <span class="text-reset fw-bold">Codeat <sup></sup></span>
+                    </div>
+                    <!-- Copyright -->
                 </div>
-                <!-- Copyright -->
-            </div>
-            <div class="   d-flex title" v-for="item in store.footerItems" :key="index">
-                <ul class="">{{ item.label }}<span class=" dot">.</span>
-                    <li v-for="x in item.storeItem" class="hover-underline-animation">
-                        {{ x.pagename }}
-                    </li>
-                </ul>
+                <div class="   d-flex title" v-for="item in store.footerItems" :key="index">
+                    <ul class="">{{ item.label }}<span class=" dot">.</span>
+                        <li v-for="x in item.storeItem" class="hover-underline-animation">
+                            {{ x.pagename }}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </footer>
 
 
 
