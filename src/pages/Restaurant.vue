@@ -1,5 +1,9 @@
 <template>
     <section v-if="restaurant">
+
+{{ restaurant.name }}
+
+
         <div v-for="(plate,index) in restaurant.plates" :key="index">
 
             {{ plate.name }}
@@ -7,17 +11,19 @@
         </div>
     </section>
 
-    <section class="loader" v-else>
-            <div class="d-flex  justify-content-center ">
-                <div>
+    <section class="loader " v-else>
+            
+                <div class="load-img">
+                    <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
                     
-                    <div class="progress-loader mt-5">
+                   </div> 
+                   <div class="progress-loader mt-5">
                         <div class="progress"></div>
                     </div>
-                </div>
+                   
+                
 
 
-            </div>
 
         </section>
 </template>
@@ -90,12 +96,18 @@ import { store } from '../store'
 @use './../assets/styles/partials/variables' as *;
 
 
+
 .loader {
-    height: calc(100vh - 373px);
+   height: 70vh;
 }
 
 .load-img {
-    width: 300px;
+    top: 40%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
 }
 
 .progress-loader {
