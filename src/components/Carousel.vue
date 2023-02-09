@@ -3,16 +3,16 @@
         <div class="container">
 
             <Carousel class=" cars" :items-to-show="3" :wrap-around="true" autoplay=4000 >
-                <Slide v-for="slide in store.carouselcard" :key="slide">
+                <Slide v-for="slide in restaurants" :key="slide" >
 
                     <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
-                        <h4>{{ slide.title }}</h4>
-                        <p class="slide-content">{{ slide.content }}</p>
+                        <h4>{{ slide.name }}</h4>
+                        <p class="slide-content">{{ slide.address }}</p>
                         <div class="d-flex mt-2  align-items-center">
                             <div class=" overflow-hidden img-cont">
-                                <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
+                                <img :src="`${store.imagBasePath }${slide.image} `" alt="">
                             </div>
-                            <p class="mb-0 ms-3 text-capitalize text-white">{{ slide.name }}</p>
+                            <p class="mb-0 ms-3 text-capitalize text-white"><i class="fa-solid fa-phone"></i>{{ slide.phone }}</p>
                         </div>
                     </div>
 
@@ -34,13 +34,15 @@
 import { store } from '../store';
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import axios from 'axios';
 
 
 export default {
     name:'CarouselRecensioni',
     data() {
         return {
-            store
+            store,
+            restaurants:[],
 
         }
     },
@@ -49,7 +51,25 @@ export default {
         Slide,
         Pagination,
         Navigation,
-    }
+    },
+
+    methods:{
+        getRestautants(){
+                axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) =>{
+                    
+                    console.log(response.data.results)
+                    this.restaurants = response.data.results
+                })
+
+            },
+    },
+
+    mounted(){
+            this.getRestautants()
+            
+       
+        }
+   
 }
 
 </script>
@@ -65,7 +85,7 @@ export default {
 
 
 span, h4 {
-    color: $red;
+    color: $black;
 }
 
 .cta {
@@ -87,9 +107,12 @@ span, h4 {
     border-radius: 50%;
 
     img {
+        width: 100%;
         height: 100%;
-
     }
+        
+
+    
 }
 
 h4 {
