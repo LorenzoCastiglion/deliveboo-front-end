@@ -20,7 +20,15 @@ import AppFooter from './components/AppFooter.vue';
       AppHeader,
       AppFooter,
     
+  },
+
+  data(){
+    return {
+      index:0,
+    }
   }
+
+  
 }
 </script>
 

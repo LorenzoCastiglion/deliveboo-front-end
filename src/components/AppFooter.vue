@@ -11,7 +11,7 @@
                     </div>
                     <!-- Copyright -->
                 </div>
-                <div class="   d-flex title" v-for="item in store.footerItems" :key="index">
+                <div class="   d-flex title" v-for="(item, index) in store.footerItems" :key="index">
                     <ul class="">{{ item.label }}<span class=" dot">.</span>
                         <li v-for="x in item.storeItem" class="hover-underline-animation">
                             {{ x.pagename }}

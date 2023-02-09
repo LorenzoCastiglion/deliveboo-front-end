@@ -61,7 +61,7 @@ export default {
 
 
 * {
-    
+    font-family: 'Mona Sans', sans-serif;
     // transition: all;
     transition:0.15s ease-in-out;
     font-feature-settings: unset;

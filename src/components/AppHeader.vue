@@ -73,7 +73,7 @@
     
     
     #nav-txt{
-        font-family: 'Montserrat', sans-serif;
+        
         font-weight:700;
         font-size: 20px;
     }

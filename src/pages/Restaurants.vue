@@ -39,20 +39,29 @@ export default {
     methods: {
 
         
-            getRestautant(){
+            getRestautants(){
                 axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) =>{
                     
                     console.log(response.data.results)
                     this.restaurants = response.data.results
                 })
 
+            },
+
+            getPlate(){
+                axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
+                    
+                    console.log(response.data.results)
+                    this.restaurants = response.data.results
+                })
             }
 
         },
 
         mounted(){
-            this.getRestautant()
-            console.log(this.store.apiBaseUrl)
+            this.getRestautants()
+            this.getPlate()
+       
         }
     }
 
@@ -75,7 +84,7 @@ export default {
 .blob { 
     top: 0;
     right: -10%;
-    transform: rotate(10deg);
+    
   width: 80%;
   height: 1000px;
   background-size: cover;
