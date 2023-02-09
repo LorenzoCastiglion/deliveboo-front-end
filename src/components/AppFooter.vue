@@ -3,13 +3,37 @@
     
         <div class="container">
             <div class="d-flex justify-content-between ">
-                <div>
-                    <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
+                <div class="flex-column align-items-center">
+                    <div class="col-12 text-center">
+                        <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
+                    </div>
                     <!-- Copyright -->
-                    <div class="mt-1 " >
+                    <div class="mt-1 text-center">
                         2023 <span class="text-reset fw-bold">Codeat <sup></sup></span>
                     </div>
                     <!-- Copyright -->
+                    <div class="wrapper">
+                        <a href="#" class="icon facebook">
+                            <div class="tooltip">Facebook</div>
+                            <span><i class="fa-brands fa-facebook"></i></span>
+                        </a>
+                        <a href="#" class="icon twitter">
+                            <div class="tooltip">Twitter</div>
+                            <span><i class="fa-brands fa-twitter"></i></span>
+                        </a>
+                        <a href="#" class="icon instagram">
+                            <div class="tooltip">Instagram</div>
+                            <span><i class="fa-brands fa-instagram"></i></span>
+                        </a>
+                        <a href="#" class="icon github">
+                            <div class="tooltip">Github</div>
+                            <span><i class="fa-brands fa-github"></i></span>
+                        </a>
+                        <a href="#" class="icon youtube">
+                            <div class="tooltip">Youtube</div>
+                            <span><i class="fa-brands fa-youtube"></i></span>
+                        </a>
+                    </div>
                 </div>
                 <div class="   d-flex title" v-for="(item, index) in store.footerItems" :key="index">
                     <ul class="">{{ item.label }}<span class=" dot">.</span>
