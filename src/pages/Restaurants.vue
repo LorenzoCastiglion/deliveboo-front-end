@@ -10,12 +10,24 @@
   <div class="container col-12">
       <TextAnimation></TextAnimation>
   </div>
+
+  <div class="col-12">
+      
+      <CarouselRestaurants>
+
+      </CarouselRestaurants>
+</div>
+
+
+
   <div class="col-12">
       
             <Carousel>
 
             </Carousel>
   </div>
+
+  
 
      
     </section>
@@ -27,7 +39,7 @@
 
 <script>
 import TextAnimation from '../components/TextAnimation.vue';
-import Carousel from '../components/Carousel.vue';
+import CarouselRestaurants from '../components/CarouselRestaurants.vue';
 import axios from 'axios';
 import { store } from '../store';
 export default {
@@ -35,7 +47,7 @@ export default {
 
     components: {
         TextAnimation,
-        Carousel,
+        CarouselRestaurants,
         
     },
 

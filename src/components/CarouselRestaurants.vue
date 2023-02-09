@@ -2,7 +2,7 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cars" :items-to-show="1" :wrap-around="true" :autoplay='4000'>
+            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay='4000'>
                 <Slide v-for="slide in restaurants" :key="slide">
 
 
@@ -16,11 +16,13 @@
                             <p class="mb-0 ms-3 text-capitalize text-white"><i class="fa-solid fa-phone"></i>{{
                                 slide.phone
                             }}</p>
+                           <p v-for="(type,index) in slide.types" :key="index" class="mb-0 ms-3 text-capitalize text-white">{{ type.name }}</p>
+                            
                         </div>
                         <div>
                             
                             <router-link :to="{ name: 'restaurant', params: { slug: slide.slug } }">
-                                visita
+                                Scopri il menu
                             </router-link>
                         </div>
 
@@ -48,7 +50,7 @@ import axios from 'axios';
 
 
 export default {
-    name: 'CarouselRecensioni',
+    name: 'CarouselRestaurant',
     data() {
         return {
             store,
@@ -72,9 +74,19 @@ export default {
             })
 
         },
+
+        getType() {
+            axios.get(`${this.store.apiBaseUrl}/types`).then((response) => {
+
+            
+                this.types = response.data.results
+            })
+
+        },
     },
 
     mounted() {
+        this.getType(),
         this.getRestautants()
 
 
