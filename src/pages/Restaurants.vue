@@ -12,7 +12,9 @@
   </div>
   <dic class="col-12">
       
-            <Carousel></Carousel>
+            <Carousel>
+                
+            </Carousel>
   </dic>
 
      
