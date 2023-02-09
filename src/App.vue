@@ -2,12 +2,16 @@
   <header>
     <AppHeader></AppHeader>
   </header>
-
-  <router-view></router-view>
-    
-
+<main>
   
-<AppFooter></AppFooter>
+    <router-view></router-view>
+  
+  
+  
+</main>
+<footer>
+  <AppFooter></AppFooter>
+</footer>
  
   
 </template>

@@ -1,8 +1,8 @@
 <template>
 
-    <footer>
+    
         <div class="container">
-            <div class="d-flex justify-content-between foot">
+            <div class="d-flex justify-content-between ">
                 <div>
                     <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
                     <!-- Copyright -->
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+  
 
 
 
