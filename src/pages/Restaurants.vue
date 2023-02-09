@@ -10,12 +10,12 @@
   <div class="container col-12">
       <TextAnimation></TextAnimation>
   </div>
-  <dic class="col-12">
+  <div class="col-12">
       
             <Carousel>
-                
+
             </Carousel>
-  </dic>
+  </div>
 
      
     </section>
@@ -43,6 +43,7 @@ export default {
         return {
             store,
             restaurants: [],
+            
            
         }
     },
@@ -60,19 +61,19 @@ export default {
 
             },
 
-            getPlate(){
-                axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
+            // getPlate(){
+            //     axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
                     
-                    console.log(response.data.results)
-                    this.restaurants = response.data.results
-                })
-            }
+            //         console.log(response.data.results)
+            //         this.plates = response.data.results
+            //     })
+            // }
 
         },
 
         mounted(){
             this.getRestautants()
-            this.getPlate()
+            // this.getPlate()
        
         }
     }

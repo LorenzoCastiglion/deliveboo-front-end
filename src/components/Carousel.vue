@@ -2,25 +2,35 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cars" :items-to-show="3" :wrap-around="true" autoplay=4000 >
-                <Slide v-for="slide in restaurants" :key="slide" >
+            <Carousel class=" cars" :items-to-show="1" :wrap-around="true" :autoplay='4000'>
+                <Slide v-for="slide in restaurants" :key="slide">
+
 
                     <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
                         <h4>{{ slide.name }}</h4>
                         <p class="slide-content">{{ slide.address }}</p>
                         <div class="d-flex mt-2  align-items-center">
                             <div class=" overflow-hidden img-cont">
-                                <img :src="`${store.imagBasePath }${slide.image} `" alt="">
+                                <img :src="`${store.imagBasePath}${slide.image} `" alt="">
                             </div>
-                            <p class="mb-0 ms-3 text-capitalize text-white"><i class="fa-solid fa-phone"></i>{{ slide.phone }}</p>
+                            <p class="mb-0 ms-3 text-capitalize text-white"><i class="fa-solid fa-phone"></i>{{
+                                slide.phone
+                            }}</p>
                         </div>
+                        <div>
+                            
+                            <router-link :to="{ name: 'restaurant', params: { slug: slide.slug } }">
+                                visita
+                            </router-link>
+                        </div>
+
                     </div>
 
 
                 </Slide>
 
                 <template #addons>
-                    <Pagination/>
+                    <Pagination />
                     <Navigation />
                 </template>
             </Carousel>
@@ -38,11 +48,11 @@ import axios from 'axios';
 
 
 export default {
-    name:'CarouselRecensioni',
+    name: 'CarouselRecensioni',
     data() {
         return {
             store,
-            restaurants:[],
+            restaurants: [],
 
         }
     },
@@ -53,38 +63,38 @@ export default {
         Navigation,
     },
 
-    methods:{
-        getRestautants(){
-                axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) =>{
-                    
-                    console.log(response.data.results)
-                    this.restaurants = response.data.results
-                })
+    methods: {
+        getRestautants() {
+            axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
 
-            },
+                console.log(response.data.results)
+                this.restaurants = response.data.results
+            })
+
+        },
     },
 
-    mounted(){
-            this.getRestautants()
-            
-       
-        }
-   
+    mounted() {
+        this.getRestautants()
+
+
+    }
+
 }
 
 </script>
 
 <style lang="scss" scoped>
-
 @use './../assets/styles/partials/variables' as *;
 
-.dot{
-    color:$red;
+.dot {
+    color: $red;
     font-size: 50px;
 }
 
 
-span, h4 {
+span,
+h4 {
     color: $black;
 }
 
@@ -98,7 +108,7 @@ span, h4 {
 
 .bkg {
     padding-top: 15px;
-   
+
 }
 
 .img-cont {
@@ -110,9 +120,9 @@ span, h4 {
         width: 100%;
         height: 100%;
     }
-        
 
-    
+
+
 }
 
 h4 {
