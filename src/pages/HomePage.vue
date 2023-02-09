@@ -53,15 +53,22 @@
         <!-- Fine scritta -->   
 
         </div>
-        
+        <!-- Carousel -->
      <div class="container-fluid">
             <div class="carosel-main col-sm-12 ">
                 
-                <Carousel :items-to-show="2.5" :wrap-around="true">
+                <Carousel :items-to-show="2.5" :wrap-around="true" autoplay=400>
                     <Slide v-for="slide in 10" :key="slide">
-                        <div class="carousel__item">
-                            {{ slide }}
+                        <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
+                        <h4>{{ slide.title }}</h4>
+                        <p class="slide-content">{{ slide.content }}</p>
+                        <div class="d-flex mt-2  align-items-center">
+                            <div class=" overflow-hidden img-cont">
+                                <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
+                            </div>
+                            <p class="mb-0 ms-3 text-capitalize text-white">{{ slide.name }}</p>
                         </div>
+                    </div>
                     </Slide>
 
                     <template #addons>
@@ -72,6 +79,29 @@
         
             </div>       
         </div>
+         <!-- Carousel fine -->
+
+         <div class="container-fluid d-flex justify-content-end">
+            <div class="p-4" >
+                <h1 class="tex-second">SCEGLI</h1>
+                <h1 class="tex-second">ORDINA</h1>
+                <h1 class="tex-second">MANGIA</h1>
+            </div>
+
+         
+         </div>
+         <!-- TESTO -->
+         <div class=" container-fluid d-flex justify-content-center">
+            <div class="col-sm-12 col-md-6 ">
+                <h2 class="text-area">Deliveboo: una piattaforma di consegna rivoluzionaria
+                    Deliveboo è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Deliveboo, puoi scegliere tra una varietà di servizi e tariffe
+                    Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
+                    Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna porteranno i tuoi articoli direttamente a casa tua.
+                    Quindi, perché aspettare?
+                 </h2>
+            </div>
+         </div>
+
        
     </section>
 
@@ -79,19 +109,30 @@
 </template>
 
 <script>
+import { store } from '../store';
+import axios from "axios";
 import CreditCard from '../components/CreditCard.vue';
 import { defineComponent } from 'vue';
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
+
 
 // import 'vue3-carousel/carousel.css';
     export default {
         name: 'HomePage',
         name: 'WrapAround',
 
+        data() {
+        return {
+            store
+
+        }
+    },
+        
         components: {
             Carousel,
             Slide,
             Navigation,
+            
         }
 
         
@@ -181,11 +222,21 @@ h3 span::before{
 .scritta-centrale{
     font-size: 80px;
     font-weight: 900;
-    color: white;
+    color: #ED6A5A;
     padding-top:100px;
     padding-bottom: 100px;
 }
+.tex-second{
+    font-size: 80px;
+    font-weight: 900;
+    color: #ED6A5A;
+}
+.text-area{
 
-
+ text-indent: 50px;
+  text-align:center;
+  letter-spacing: 3px;
+  vertical-align:middle
+}
 
 </style>
