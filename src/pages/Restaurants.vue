@@ -55,25 +55,25 @@ export default {
             getRestautants(){
                 axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) =>{
                     
-                    console.log(response.data.results)
+                    // console.log(response.data.results)
                     this.restaurants = response.data.results
                 })
 
             },
 
-            // getPlate(){
-            //     axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
+            getPlate(){
+                axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
                     
-            //         console.log(response.data.results)
-            //         this.plates = response.data.results
-            //     })
-            // }
+                    console.log(response.data.results)
+                    this.plates = response.data.results
+                })
+            }
 
         },
 
         mounted(){
             this.getRestautants()
-            // this.getPlate()
+            this.getPlate()
        
         }
     }

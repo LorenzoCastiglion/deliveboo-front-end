@@ -1,14 +1,25 @@
 <template>
-    <div>
+    <section v-if="restaurant">
+        <div v-for="(plate,index) in restaurant.plates" :key="index">
 
+            {{ plate.name }}
 
-        <div v-for="(plate, index) in restaurant.plates" :key="index">
-        
-        <p>{{ plate.name }}</p>
-        
         </div>
+    </section>
 
-    </div>
+    <section class="loader" v-else>
+            <div class="d-flex  justify-content-center ">
+                <div>
+                    
+                    <div class="progress-loader mt-5">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
 </template>
 
 <script>
@@ -51,14 +62,22 @@ import { store } from '../store'
 
         },
 
+        getApi(){
+            return (this.getRestaurant,
+             this.getPlates)
+        }
         
     },
 
     mounted() {
+        
+
         setTimeout(
-            this.getRestaurant, 1500,
-            this.getPlates, 1500
+            this.getRestaurant,1500,
+            this.getPlates,1500
         )
+          
+        
 
     }
         
@@ -67,5 +86,51 @@ import { store } from '../store'
 </script>
 
 <style lang="scss" scoped>
+
+@use './../assets/styles/partials/variables' as *;
+
+
+.loader {
+    height: calc(100vh - 373px);
+}
+
+.load-img {
+    width: 300px;
+}
+
+.progress-loader {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  background: rgba(236, 236, 238, 0.253);
+  height: 10px;
+  border-radius: 7px;
+}
+
+.progress {
+  width: 1px;
+  height: 10px;
+  border-radius: 7px;
+  background: $red;
+  transition: 0.5s;
+  animation: loading_44 3s ease infinite;
+}
+
+@keyframes loading_44 {
+  0% {
+    width: 0%;
+  }
+
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
+}
+
 
 </style>
