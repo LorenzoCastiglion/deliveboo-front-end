@@ -1,35 +1,51 @@
 <template>
 
-    
-        <div class="container">
-            <div class="d-flex justify-content-between ">
-                <div class="flex-column align-items-center">
-                    <div class="col-12 text-center">
-                        <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
-                    </div>
-                    <!-- Copyright -->
-                    <div class="mt-1 text-center">
-                        2023 <span class="text-reset fw-bold">Codeat <sup></sup></span>
-                    </div>
-                    <!-- Copyright -->
-                    <div class="wrapper">
-                        <a v-for="link in socialLinks" :key="link.name" :href="link.url" class="icon" :class="link.name.toLowerCase()">
-                            <div class="tooltip">{{ link.name }}</div>
-                            <span><i :class="`fa-brands ${link.icon}`"></i></span>
-                        </a>
-                    </div>
-                </div>               
 
-                <div class="   d-flex title" v-for="(item, index) in store.footerItems" :key="index">
+    <div class="container ">
+        <div class="d-flex  ">
+            <div class="flex-column align-items-center">
+                <div class="col-12 text-center">
+                    <img class="img pt-3" src="../../public/img/logo-01.png" alt="">
+                </div>
+                <!-- Copyright -->
+                <div class="mt-1 text-center">
+                    2023 <span class="text-reset fw-bold">Codeat <sup>®</sup></span>
+                </div>
+                <!-- Copyright -->
+
+            </div>
+            <div class="d-flex flex-grow-1 justify-content-around align-items-baseline ">
+
+                <div v-for="(item, index) in store.footerItems" :key="index">
                     <ul class="">{{ item.label }}<span class=" dot">.</span>
                         <li v-for="x in item.storeItem" class="hover-underline-animation">
                             {{ x.pagename }}
                         </li>
                     </ul>
                 </div>
+
+                <div class="wrapper d-flex flex-wrap flex-column  ">
+                    <div class="">
+                        <h3 class="m-0 ">Social <span class="dot">.</span></h3>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="d-flex flex-wrap">
+
+                            <a v-for="link in socialLinks" :key="link.name" :href="link.url" class="icon"
+                            :class="link.name.toLowerCase()">
+                            <div class="tooltip">{{ link.name }}</div>
+                            <span><i :class="`fa-brands ${link.icon}`"></i></span>
+
+                        </a>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
-  
+    </div>
+
 
 
 
@@ -62,7 +78,12 @@ export default {
 
 }
 
-img{
+h3 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+img {
     width: 100px;
 }
 
@@ -70,6 +91,10 @@ img{
 ul {
     font-size: 22px;
     font-weight: 500;
+
+    &:nth-child(1){
+        margin-right: 20px;
+    }
 
     li {
         font-size: 14px;
@@ -113,6 +138,17 @@ ul {
         display: none;
     }
 
+    .wrapper {
+
+        h3,
+        a,
+        div,
+        span {
+
+            display: none;
+        }
+    }
+
 }
 
 // SOCIAL ICON
@@ -121,11 +157,11 @@ ul {
         position: relative;
         background-color: #ffffff;
         border-radius: 50%;
-        margin: 10px;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-        font-size: 22px;
+        margin: 0.2em;
+        width: 2em;
+        height: 2em;
+
+        font-size: 1.5em;
         display: inline-block;
         align-items: center;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -134,15 +170,35 @@ ul {
         color: #333;
         text-decoration: none;
 
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size:1em;
+            font-weight: 500;
+
+            text-align: center;
+            color: #333;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         &:hover {
 
-            span,
+            span {
+                color: white;
+            }
+
             .tooltip {
                 text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
             }
 
             .tooltip {
-                top: -45px;
+                top: -80%;
                 opacity: 1;
                 visibility: visible;
                 pointer-events: auto;

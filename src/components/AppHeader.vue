@@ -1,7 +1,7 @@
 <template>
 
     <header>
-        <nav class="container navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="container navbar navbar-expand-lg bg-body-tertiary px-5 px-md-0 ">
             <div class="container-fluid">
                 <img class="logo" src="../../public/img/logo_text_b.png" alt="">
 

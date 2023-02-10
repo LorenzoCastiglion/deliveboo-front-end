@@ -74,33 +74,7 @@ export const store = reactive({
                 }
             ]
         },
-        {
-            label: 'Contacts',
-            routeName: 'contacts',
-            storeItem:[
-                {
-
-                    pagename: 'Contrada Fiorentino, 28, Appartamento 53',
-                    url:"#"
-                },
-                {
-                    pagename: 'Genova',
-                    url:"#"
-                },
-                {
-                    pagename: '79547',
-                    url:"#"
-                },
-                {
-                    pagename: '+20 67 7212625',
-                    url:"#"
-                },
-                {
-                    pagename: 'make-up@make_up.up',
-                    url:"#"
-                },
-            ]
-        },
+         
     ],
 
   
