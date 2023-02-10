@@ -8,6 +8,7 @@
            <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
            <p>quantità: {{ plate.quantity }}</p>
         </div>
+        <button @click="clearCart()">Svuota</button>
     </section>
 
     <section class="loader " v-else>
@@ -113,9 +114,13 @@ import { store } from '../store'
             // console.log('ko');
             console.log( store.cart); 
         },
-        deleteFromCart(plate) {
+        clearCart() {
+            store.cart = [];
+            localStorage.removeItem("cart");
+            console.log( store.cart); 
+            console.log("Carrello svuotato");
+            },
         },
-    },
 
     mounted() {
         
