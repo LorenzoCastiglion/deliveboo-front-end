@@ -12,12 +12,12 @@
                         <div class="img mb-2">
                             <img class="w-100 h-100" :src="`${store.imagBasePath}${slide.image}`" alt="">
                         </div>
-                        <h3 class="text-white">{{ slide.name }}</h3>
+                        <h3 class="">{{ slide.name }}</h3>
                         <p class="info">{{ truncate(slide.description, 100) }}</p>
 
                         <router-link :to="{ name: 'restaurant', params: { slug: slide.slug } }">
-                            <button>
-                                Menu
+                            <button class="">
+                                <p class="  m-0">Menù</p>
                             </button>
                         </router-link>
                     </div>
@@ -162,11 +162,10 @@ export default {
 .carta a {
     color: white;
     transition: .4s ease-in-out;
+    text-decoration: none;
 }
 
-.carta a:hover {
-    color: rgb(36, 116, 221);
-}
+
 
 .carta button {
     padding: 0.8em 1.7em;
@@ -176,14 +175,15 @@ export default {
     border: none;
     margin-top: 2em;
     font-weight: bold;
-    background: #ffffff;
+    background: $acqua;
     color: rgb(0, 0, 0);
     transition: .4s ease-in-out;
 }
 
 .carta button:hover {
-    background: rgb(36, 116, 221);
-    color: white;
+    background: $yellow;
+    color:$red;
+    text-decoration: none;
 }
 
 .carousel__slide--next {
