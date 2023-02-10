@@ -1,31 +1,23 @@
 <template>
     <section v-if="restaurant">
-
-{{ restaurant.name }}
-
-
+        <h2>{{ restaurant.name }}</h2>
+        <h4>Scegli i tuoi piatti</h4>
         <div v-for="(plate,index) in restaurant.plates" :key="index">
-
-            {{ plate.name }}
-
+           <p>{{ plate.name }}: <span>{{ plate.price }} euro</span></p> 
+           <button @click="addToCart(plate)">Aggiungi al carrello</button>
+           <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
+           <p>quantità: {{ plate.quantity }}</p>
         </div>
     </section>
 
     <section class="loader " v-else>
-            
-                <div class="load-img">
-                    <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
-                    
-                   </div> 
-                   <div class="progress-loader mt-5">
-                        <div class="progress"></div>
-                    </div>
-                   
-                
-
-
-
-        </section>
+        <div class="load-img">
+            <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
+        </div> 
+        <div class="progress-loader mt-5">
+            <div class="progress"></div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -39,6 +31,7 @@ import { store } from '../store'
                 
                 store,
                 restaurant:null,
+                
             }
         },
 
@@ -71,8 +64,57 @@ import { store } from '../store'
         getApi(){
             return (this.getRestaurant,
              this.getPlates)
-        }
-        
+        }, 
+        addToCart(plate){
+            if (!store.cart) {
+                store.cart = [];
+            }
+            let plateInCart = false;
+            for (let i = 0; i < store.cart.length; i++) {
+                if (store.cart[i].slug === plate.slug) {
+                store.cart[i].quantity++;
+                plateInCart = true;
+                break;
+                }
+            }
+            if (!plateInCart) {
+                plate.quantity = 1;
+                store.cart.push(plate);
+            }
+            localStorage.setItem("cart", JSON.stringify(store.cart));
+
+            console.log("Plate aggiunto al carrello");
+            // plate.quantity = 0;
+            // plate.quantity++;
+            // store.cart.push(plate);
+            // localStorage.setItem(plate.slug, JSON.stringify(plate));
+            // console.log('ok'); 
+            console.log( store.cart); 
+        },
+
+        removeFromCart(plate) {
+            if(store.cart.length>0){
+                for (let i = 0; i < store.cart.length; i++) {
+                    if (store.cart[i].slug === plate.slug) {
+                        store.cart[i].quantity--;
+                        if (store.cart[i].quantity === 0) {
+                            store.cart.splice(i, 1);
+                        }
+                        break;
+                    }
+                }
+                localStorage.setItem("cart", JSON.stringify(store.cart));
+                console.log("Plate rimosso dal carrello");
+            }
+            // plate.quantity--;
+            // const index = this.store.cart.findIndex(item => item.slug === plate.slug);
+            // this.store.cart.splice(index, 1);
+            // localStorage.removeItem(plate.slug);
+            // console.log('ko');
+            console.log( store.cart); 
+        },
+        deleteFromCart(plate) {
+        },
     },
 
     mounted() {

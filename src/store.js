@@ -85,5 +85,7 @@ export const store = reactive({
         { name: 'Github', url: '#', icon: 'fa-github' },
         { name: 'Youtube', url: '#', icon: 'fa-youtube' }
         ],
+    
+    cart: [],
 
 })
