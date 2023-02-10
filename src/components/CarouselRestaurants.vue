@@ -2,30 +2,20 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay='4000'>
+            <Carousel class=" cards" :items-to-show="1" :wrap-around="true">
                 <Slide v-for="slide in restaurants" :key="slide">
 
 
-                    <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
-                        <h4>{{ slide.name }}</h4>
-                        <p class="slide-content">{{ slide.address }}</p>
-                        <div class="d-flex mt-2  align-items-center">
-                            <div class=" overflow-hidden img-cont">
-                                <img :src="`${store.imagBasePath}${slide.image} `" alt="">
-                            </div>
-                            <p class="mb-0 ms-3 text-capitalize text-white"><i class="fa-solid fa-phone"></i>{{
-                                slide.phone
-                            }}</p>
-                           <p v-for="(type,index) in slide.types" :key="index" class="mb-0 ms-3 text-capitalize text-white">{{ type.name }}</p>
-                            
-                        </div>
-                        <div>
-                            
-                            <router-link :to="{ name: 'restaurant', params: { slug: slide.slug } }">
-                                Scopri il menu
-                            </router-link>
-                        </div>
 
+
+                    <div class="carta">
+                        <div class="img">
+                            <img class="w-100 h-100" :src="`${store.imagBasePath}${slide.image}`" alt="">
+                        </div>
+                        <span class="text-white">{{ slide.name }}</span>
+                        <p class="info">{{ truncate(slide.description,100) }}</p>
+                        <p>lorem500</p>
+                        <button>Resume</button>
                     </div>
 
 
@@ -55,6 +45,9 @@ export default {
         return {
             store,
             restaurants: [],
+            
+
+
 
         }
     },
@@ -64,6 +57,9 @@ export default {
         Pagination,
         Navigation,
     },
+
+  
+
 
     methods: {
         getRestautants() {
@@ -78,16 +74,26 @@ export default {
         getType() {
             axios.get(`${this.store.apiBaseUrl}/types`).then((response) => {
 
-            
+
                 this.types = response.data.results
             })
 
         },
+
+        truncate(str, n) {
+            return str.substring(0,n) + '...' ;
+        }
+
+
     },
 
+
+
+
+
     mounted() {
-        this.getType(),
-        this.getRestautants()
+            this.getType(),
+            this.getRestautants()
 
 
     }
@@ -99,56 +105,80 @@ export default {
 <style lang="scss" scoped>
 @use './../assets/styles/partials/variables' as *;
 
-.dot {
-    color: $red;
-    font-size: 50px;
-}
+.carta {
+    width: 17em;
+    height: 100%;
 
-
-span,
-h4 {
-    color: $black;
-}
-
-.cta {
-    border: 0;
-    background-color: $red;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 8px;
-}
-
-.bkg {
-    padding-top: 15px;
+    transition: 1s ease-in-out;
+    clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22753.595%22 height=%22644.116%22 viewBox=%22112.635 218.87 753.595 644.116%22%3E%3Cdefs%3E%3CradialGradient id=%22c%22 r=%22100%25%22 cx=%222%25%22 cy=%2280%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23FF0037%22%2F%3E%3Cstop offset=%2250%25%22 stop-color=%22%23F4F1BB%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%239BC1BC%22%2F%3E%3C%2FradialGradient%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.1 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22url(%23c)%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 
 }
 
-.img-cont {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-
-
-
-}
-
-h4 {
-    font-size: 16px;
+.carta span {
     font-weight: bold;
+    color: white;
+    text-align: center;
+    display: block;
+    padding-top: 1em;
+    font-size: 1em;
 }
 
-.slide-content {
-    font-size: 12px;
-    color: rgb(234, 223, 223);
+.carta .info {
+    font-weight: 400;
+    color: $black;
+    display: block;
+    text-align: center;
+    padding-top: 0.1em;
+    font-size: 0.72em;
+    margin: 1em;
+    margin-top: 1em;
 }
 
-.nomeproff {
-    font-size: 14px;
+.carta .img {
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+    background: white;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 1.7em;
+}
+
+.carta .share {
+    text-align: center;
+    margin-top: 1.8em;
+}
+
+.carta a {
+    color: white;
+    transition: .4s ease-in-out;
+}
+
+.carta a:hover {
+    color: rgb(36, 116, 221);
+}
+
+.carta button {
+    padding: 0.8em 1.7em;
+    display: block;
+    margin: auto;
+    border-radius: 25px;
+    border: none;
+    margin-top: 2em;
+    font-weight: bold;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    transition: .4s ease-in-out;
+}
+
+.carta button:hover {
+    background: rgb(36, 116, 221);
     color: white;
 }
 
@@ -158,5 +188,15 @@ h4 {
 
 .carousel__slide--prev {
     opacity: 0.5;
+}
+
+
+.blob {
+    //   width: 100%;
+    //   height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22753.595%22 height=%22644.116%22 viewBox=%22112.635 218.87 753.595 644.116%22%3E%3Cdefs%3E%3CradialGradient id=%22c%22 r=%22100%25%22 cx=%222%25%22 cy=%2280%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23FF0037%22%2F%3E%3Cstop offset=%2250%25%22 stop-color=%22%23F4F1BB%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%239BC1BC%22%2F%3E%3C%2FradialGradient%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.1 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22url(%23c)%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
 </style>

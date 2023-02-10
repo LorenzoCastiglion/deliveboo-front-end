@@ -1,7 +1,7 @@
 <template>
 
     test di cose
-    <div style="min-height: 100vh">
+    <div style="min-height: 100vh" class=" overflow-auto">
         <FadeIntoView>
             <div class="demo">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque fuga quod, temporibus aliquam aliquid exercitationem quis distinctio voluptatem quisquam ipsa expedita delectus sint excepturi itaque necessitatibus molestias! Repudiandae dignissimos qui illo et accusamus, quo magni repellat error incidunt voluptates provident sunt nisi ex facere totam temporibus expedita sapiente cum numquam dolorem. Nesciunt esse, reprehenderit nulla explicabo provident a blanditiis, quaerat fugiat maiores quidem ab tempora corrupti quas, officiis distinctio non. Animi, veniam voluptatem. Pariatur repellendus fugit, veritatis at maiores aut consectetur sequi quis. Sed quasi laboriosam, vel voluptatum delectus a, nihil dolore earum, provident iure eius distinctio doloremque dolores consectetur.
