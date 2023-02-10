@@ -1,7 +1,7 @@
 <template>
 
     <!-- sezione hero e ricerca -->
-    <section class="home-container position-relative d-flex justify-content-center align-items-center flex-wrap ">
+    <section class="home-container position-relative d-flex justify-content-center align-items-center flex-wrap container-md container-xxl">
 
         <div class="position-absolute blobtainer col-12 ">
             <div class="blob "></div>
@@ -45,14 +45,13 @@
 
        <!-- Scritta centrale -->
 
-        <div class="col-6">
-
-            <h1 class="scritta-centrale">
-                 i nostri partners
-            </h1>
+       <div class="col-md-6 justify-content-md-center cont-som  d-flex">
+          <h1 class="scritta-centrale">
+            i nostri partners
+         </h1>
         <!-- Fine scritta -->   
 
-        </div>
+</div>
         <!-- Carousel -->
      <div class="container-fluid col-sm-12">
             <div class="carosel-main col-sm-12 ">
@@ -60,15 +59,15 @@
                 <Carousel :items-to-show="2.5" :wrap-around="true" autoplay=10000>
                     <Slide v-for="(restaurant, id ) in restaurants" :key="id">
                         <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
-                        <h4>{{ restaurant.name }}</h4>
-                        <p class="slide-content">{{restaurant.description  }}</p>
-                        <div class="d-flex mt-2  align-items-center">
+                            <div class="d-flex mt-2  align-items-center">
                             <div class=" overflow-hidden img-cont">
                                 <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
                                 <img :src="`${store.imgBasePath}${restaurant.image}`" alt="">
                             </div>
                         </div>
-                            <div class="d-flex">
+                            <h4>{{ restaurant.name }}</h4>
+                            <p class="slide-content">{{ this.trimText(restaurant.description)  }}</p>
+                             <div class="d-flex">
                                 <p class="mb-0 ms-3 text-capitalize ">{{restaurant.address  }}</p>
                                 <p class="mb-0 ms-3 text-capitalize ">{{restaurant.phone  }}</p>
                             </div>
@@ -85,8 +84,8 @@
         </div>
          <!-- Carousel fine -->
 
-         <div class="container-fluid d-flex justify-content-end">
-            <div class="p-4" >
+         <div class="container-fluid d-flex justify-content-md-end justify-content-sm-center col-md-12">
+            <div class="p-4 " >
                 <h1 class="tex-second">SCEGLI</h1>
                 <h1 class="tex-second">ORDINA</h1>
                 <h1 class="tex-second">MANGIA</h1>
@@ -97,7 +96,7 @@
          <!-- TESTO -->
          <div class=" container-fluid d-flex justify-content-center">
             <div class="col-sm-12 col-md-6 ">
-                <h2 class="text-area">Deliveboo: una piattaforma di consegna rivoluzionaria
+                <h2 class="text-area"> Deliveboo: una piattaforma di consegna rivoluzionaria
                     Deliveboo è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Deliveboo, puoi scegliere tra una varietà di servizi e tariffe
                     Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
                     Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna porteranno i tuoi articoli direttamente a casa tua.
@@ -129,9 +128,11 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
         return {
             store,
             restaurants: [],
+            textlength : 100,
 
         };
-    }, components: {
+    }, 
+    components: {
             Carousel,
             Slide,
             Navigation,      
@@ -143,6 +144,13 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
                     this.restaurants = res.data.results;
                 });
             },
+
+            trimText(text){
+            if(text.length > this.textlength){
+                return text.substr(0,this.textlength) + '...';
+            }
+            return text;
+           }
         },
         
         mounted() {
@@ -159,6 +167,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
 // jumbo/hero section
 .home-container {
    overflow-x: hidden;
+
 }
 
 h3{
@@ -238,17 +247,47 @@ h3 span::before{
     padding-top:100px;
     padding-bottom: 100px;
 }
+
+
+.cont-som{
+    padding-top: 100px;
+}
 .tex-second{
+  
     font-size: 80px;
     font-weight: 900;
     color: #ED6A5A;
 }
 .text-area{
-
- text-indent: 50px;
   text-align:center;
-  letter-spacing: 3px;
-  vertical-align:middle
+  letter-spacing: 2px;
+  vertical-align:middle;
+  padding-top: 200px;
+  padding-bottom: 20px;
+  font-stretch:ultra-condensed
 }
+
+// @media only screen and (max-width: 768px) and (min-width:300px) {
+
+// .text-area {
+//     -webkit-line-clamp: 3;
+//     -webkit-box-orient: vertical;
+//     max-width: 300px;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     height:670px;
+  
+// }
+
+   
+// }
+
+// @media only screen and (max-width: 768px) {
+
+
+
+
+// }
+
 
 </style>
