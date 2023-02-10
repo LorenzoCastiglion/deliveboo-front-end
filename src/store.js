@@ -134,9 +134,12 @@ export const store = reactive({
 
 
     ],
-
-
-
-
+    socialLinks: [
+        { name: 'Facebook', url: '#', icon: 'fa-facebook'},
+        { name: 'Twitter', url: '#', icon: 'fa-twitter' },
+        { name: 'Instagram', url: '#', icon: 'fa-instagram' },
+        { name: 'Github', url: '#', icon: 'fa-github' },
+        { name: 'Youtube', url: '#', icon: 'fa-youtube' }
+        ],
 
 })
