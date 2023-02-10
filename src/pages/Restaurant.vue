@@ -4,6 +4,11 @@
 {{ restaurant.name }}
 
 
+<div class="blob-img">
+    <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
+</div>
+
+
         <div v-for="(plate,index) in restaurant.plates" :key="index">
 
             {{ plate.name }}
@@ -39,6 +44,8 @@ import { store } from '../store'
                 
                 store,
                 restaurant:null,
+                imagBasePath:''
+                
             }
         },
 
@@ -144,5 +151,30 @@ import { store } from '../store'
   }
 }
 
+
+// image container
+
+.blob-img{
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+    border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+    animation: blob 10s linear infinite; ;
+}
+
+@keyframes blob {
+      0%, 100%{
+        border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+      }  
+      33%{
+        border-radius: 42% 28% 62% 18% / 28% 28% 89% 89%;
+      }
+
+      66%{
+        border-radius: 100% 56% 56% 100% / 100% 100% 79% 79%;
+      }
+
+      
+}
 
 </style>
