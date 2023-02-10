@@ -13,28 +13,13 @@
                     </div>
                     <!-- Copyright -->
                     <div class="wrapper">
-                        <a href="#" class="icon facebook">
-                            <div class="tooltip">Facebook</div>
-                            <span><i class="fa-brands fa-facebook"></i></span>
-                        </a>
-                        <a href="#" class="icon twitter">
-                            <div class="tooltip">Twitter</div>
-                            <span><i class="fa-brands fa-twitter"></i></span>
-                        </a>
-                        <a href="#" class="icon instagram">
-                            <div class="tooltip">Instagram</div>
-                            <span><i class="fa-brands fa-instagram"></i></span>
-                        </a>
-                        <a href="#" class="icon github">
-                            <div class="tooltip">Github</div>
-                            <span><i class="fa-brands fa-github"></i></span>
-                        </a>
-                        <a href="#" class="icon youtube">
-                            <div class="tooltip">Youtube</div>
-                            <span><i class="fa-brands fa-youtube"></i></span>
+                        <a v-for="link in socialLinks" :key="link.name" :href="link.url" class="icon" :class="link.name.toLowerCase()">
+                            <div class="tooltip">{{ link.name }}</div>
+                            <span><i :class="`fa-brands ${link.icon}`"></i></span>
                         </a>
                     </div>
-                </div>
+                </div>               
+
                 <div class="   d-flex title" v-for="(item, index) in store.footerItems" :key="index">
                     <ul class="">{{ item.label }}<span class=" dot">.</span>
                         <li v-for="x in item.storeItem" class="hover-underline-animation">
@@ -58,6 +43,11 @@ export default {
     data() {
         return {
             store
+        }
+    },
+    computed: {
+        socialLinks() {
+            return store.socialLinks;
         }
     }
 }
