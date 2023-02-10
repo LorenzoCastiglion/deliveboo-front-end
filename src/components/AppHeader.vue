@@ -3,7 +3,10 @@
     <header>
         <nav class="container navbar navbar-expand-lg bg-body-tertiary px-5 px-md-0 ">
             <div class="container-fluid">
-                <img class="logo" src="../../public/img/logo_text_b.png" alt="">
+                <router-link :to="{name: store.menuItems[0].routeName}">
+                    <img class="logo" src="../../public/img/logo_text_b.png" alt="">
+                </router-link>
+                
 
                 <div id="NavDesktop" class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav  mb-2 mb-lg-0 ">
