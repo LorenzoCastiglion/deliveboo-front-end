@@ -54,20 +54,24 @@
 
         </div>
         <!-- Carousel -->
-     <div class="container-fluid">
+     <div class="container-fluid col-sm-12">
             <div class="carosel-main col-sm-12 ">
                 
-                <Carousel :items-to-show="2.5" :wrap-around="true" autoplay=400>
-                    <Slide v-for="slide in 10" :key="slide">
+                <Carousel :items-to-show="2.5" :wrap-around="true" autoplay=10000>
+                    <Slide v-for="(restaurant, id ) in restaurants" :key="id">
                         <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
-                        <h4>{{ slide.title }}</h4>
-                        <p class="slide-content">{{ slide.content }}</p>
+                        <h4>{{ restaurant.name }}</h4>
+                        <p class="slide-content">{{restaurant.description  }}</p>
                         <div class="d-flex mt-2  align-items-center">
                             <div class=" overflow-hidden img-cont">
                                 <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
+                                <img :src="`${store.imgBasePath}${restaurant.image}`" alt="">
                             </div>
-                            <p class="mb-0 ms-3 text-capitalize text-white">{{ slide.name }}</p>
                         </div>
+                            <div class="d-flex">
+                                <p class="mb-0 ms-3 text-capitalize ">{{restaurant.address  }}</p>
+                                <p class="mb-0 ms-3 text-capitalize ">{{restaurant.phone  }}</p>
+                            </div>
                     </div>
                     </Slide>
 
@@ -123,19 +127,27 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
 
         data() {
         return {
-            store
+            store,
+            restaurants: [],
 
-        }
-    },
-        
-        components: {
+        };
+    }, components: {
             Carousel,
             Slide,
-            Navigation,
-            
-        }
+            Navigation,      
+        },
+        methods: {
 
+            getRestaurants() {
+                axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
+                    this.restaurants = res.data.results;
+                });
+            },
+        },
         
+        mounted() {
+    this.getRestaurants();
+  },
 
 
     }
