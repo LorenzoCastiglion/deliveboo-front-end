@@ -1,15 +1,29 @@
 <template>
-    <section v-if="restaurant">
-        <h2>{{ restaurant.name }}</h2>
-        <h4>Scegli i tuoi piatti</h4>
-        <div v-for="(plate,index) in restaurant.plates" :key="index">
-           <p>{{ plate.name }}: <span>{{ plate.price }} euro</span></p> 
-           <button @click="addToCart(plate)">Aggiungi al carrello</button>
-           <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
-           <p>quantità: {{ plate.quantity }}</p>
+    <section v-if="restaurant" >
+        <h2 class="mb-5">{{ restaurant.name }}</h2>
+        <div class="d-flex">
+            <div class="me-5">
+                <h4>Scegli i tuoi piatti</h4>
+                <div v-for="(plate,index) in restaurant.plates" :key="index">
+                <p>{{ plate.name }}: <span>{{ plate.price }} euro</span></p> 
+                <button @click="addToCart(plate)">Aggiungi al carrello</button>
+                <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
+                <p>quantità: {{ plate.quantity }}</p>
+                </div>
+            </div>
+            
+            <div>
+                <p>CARRELLO:</p>
+                <ul>
+                    <li v-for="(item, i) in store.cart" :key="i">
+                        <p> <span class="fw-bold">{{ item.name }}</span>  x{{ item.quantity }}</p>
+                    </li>
+                </ul>
+                <button @click="clearCart()">Svuota</button>
+            </div>
         </div>
-        <button @click="clearCart()">Svuota</button>
     </section>
+    
 
     <section class="loader " v-else>
         <div class="load-img">
@@ -32,7 +46,6 @@ import { store } from '../store'
                 
                 store,
                 restaurant:null,
-                
             }
         },
 
@@ -40,28 +53,20 @@ import { store } from '../store'
         methods: {
         getRestaurant() {
             axios.get(`${this.store.apiBaseUrl}/restaurants/${this.$route.params.slug}`).then((response) => {
-                console.log(response.data.results)
+                // console.log(response.data.results)
                 if (response.data.success) {
-                    
                     this.restaurant = response.data.results;
                 } else {
                     this.$router.push({ name: 'notfound' })
                 }
             })
-
         },
-
         getPlates() {
             axios.get(`${this.store.apiBaseUrl}/plates/${this.$route.params.slug}`).then((response) => {
-                console.log(response.data.results)
-             
-                    
-                    this.plates = response.data.results;
-              
+                // console.log(response.data.results);
+                this.plates = response.data.results;
             })
-
         },
-
         getApi(){
             return (this.getRestaurant,
              this.getPlates)
@@ -83,13 +88,7 @@ import { store } from '../store'
                 store.cart.push(plate);
             }
             localStorage.setItem("cart", JSON.stringify(store.cart));
-
-            console.log("Plate aggiunto al carrello");
-            // plate.quantity = 0;
-            // plate.quantity++;
-            // store.cart.push(plate);
-            // localStorage.setItem(plate.slug, JSON.stringify(plate));
-            // console.log('ok'); 
+            console.log("Piatto aggiunto al carrello"); 
             console.log( store.cart); 
         },
 
@@ -107,11 +106,6 @@ import { store } from '../store'
                 localStorage.setItem("cart", JSON.stringify(store.cart));
                 console.log("Plate rimosso dal carrello");
             }
-            // plate.quantity--;
-            // const index = this.store.cart.findIndex(item => item.slug === plate.slug);
-            // this.store.cart.splice(index, 1);
-            // localStorage.removeItem(plate.slug);
-            // console.log('ko');
             console.log( store.cart); 
         },
         clearCart() {
@@ -123,17 +117,15 @@ import { store } from '../store'
         },
 
     mounted() {
-        
-
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            store.cart = JSON.parse(storedCart);
+        }
         setTimeout(
             this.getRestaurant,1500,
             this.getPlates,1500
         )
-          
-        
-
-    }
-        
+    },   
 
     }
 </script>
