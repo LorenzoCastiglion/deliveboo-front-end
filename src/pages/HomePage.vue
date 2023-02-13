@@ -1,7 +1,7 @@
 <template>
 
     <!-- sezione hero e ricerca -->
-    <section class="home-container position-relative d-flex justify-content-center align-items-center flex-wrap container-md container-xxl">
+    <section class="home-container position-relative d-flex justify-content-center container-xl align-items-center flex-wrap justify-content-md-center ">
 
         <div class="position-absolute blobtainer col-12 ">
             <div class="blob "></div>
@@ -20,10 +20,14 @@
         <div class="d-flex container ">
             <div class="d-flex col-sm-12 col-md-6 justify-content-end align-items-center ">
                 <h3 class="text-start">Hai voglia di: <br>
+                
                     <span></span> </h3>
+
             </div>
             <div class=" col-6 ">
+                    
                 <div class="d-flex flex-wrap col-12">
+                        
                     <div class="col-12">
                         <img class="w-100" src="../../public/img/ramen.png" alt="">
                     </div>
@@ -39,35 +43,48 @@
 
                
             </div>
-
                 
         </div>
 
+                <div class="container">
+                         <router-link class="button-type " :to="{name:'restaurants'}">Tipologie di Ristorante</router-link> 
+                     </div>  
+
        <!-- Scritta centrale -->
+       
+        <div class="container justify-content-sm-center col-md-12">
+            <div class="d-flex ">
+                <h1 class="scritta-centrale text-start">
+                    i nostri partners
+                </h1>
+            </div>  
+        </div>
 
-       <div class="col-md-6 justify-content-md-center cont-som  d-flex">
-          <h1 class="scritta-centrale">
-            i nostri partners
-         </h1>
-        <!-- Fine scritta -->   
+    <!-- Fine scritta --> 
 
-</div>
+    
+
+
+
         <!-- Carousel -->
      <div class="container-fluid col-sm-12">
             <div class="carosel-main col-sm-12 ">
-                
-                <Carousel :items-to-show="2.5" :wrap-around="true" autoplay=10000>
-                    <Slide v-for="(restaurant, id ) in restaurants" :key="id">
-                        <div class=" text-start mx-3 bg-transparent px-5 pb-5 rounded-3">
+                <!-- autoplay=10000 -->
+                <Carousel :items-to-show="2.5" :wrap-around="true"   > 
+                    <Slide v-for="(restaurant, index ) in restaurants" :key="index">
+                        <div class=" card-carousel text-center mx-5 bg-transparent px-5 pb-5 rounded-3">
                             <div class="d-flex mt-2  align-items-center">
-                            <div class=" overflow-hidden img-cont">
+                            <div class=" overflow-hidden img-cont-circular">
                                 <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
-                                <img :src="`${store.imgBasePath}${restaurant.image}`" alt="">
+                                <img :src="`${store.imagBasePath}${restaurant.image}`" alt="">
                             </div>
                         </div>
-                            <h4>{{ restaurant.name }}</h4>
+                            <h4 class="pt-4">{{ restaurant.name }}</h4>
                             <p class="slide-content">{{ this.trimText(restaurant.description)  }}</p>
-                             <div class="d-flex">
+                                <div>
+                                    <router-link  class="button-type2 " :to="{name: 'restaurant',params:{slug:restaurant.slug}}">più dettagli</router-link>
+                                </div>
+                             <div class="d-flex pt-3">
                                 <p class="mb-0 ms-3 text-capitalize ">{{restaurant.address  }}</p>
                                 <p class="mb-0 ms-3 text-capitalize ">{{restaurant.phone  }}</p>
                             </div>
@@ -84,7 +101,7 @@
         </div>
          <!-- Carousel fine -->
 
-         <div class="container-fluid d-flex justify-content-md-end justify-content-sm-center col-md-12">
+         <div class="container-fluid d-flex justify-content-md-end justify-content-sm-center col-md-12 cont-som ">
             <div class="p-4 " >
                 <h1 class="tex-second">SCEGLI</h1>
                 <h1 class="tex-second">ORDINA</h1>
@@ -94,13 +111,19 @@
          
          </div>
          <!-- TESTO -->
-         <div class=" container-fluid d-flex justify-content-center">
-            <div class="col-sm-12 col-md-6 ">
-                <h2 class="text-area"> Deliveboo: una piattaforma di consegna rivoluzionaria
-                    Deliveboo è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Deliveboo, puoi scegliere tra una varietà di servizi e tariffe
+         <div class=" container-fluid d-flex">
+            <div class="col-sm-12  justify-content-center ">
+                <h2 class="text-area-long"> Code_eat: una piattaforma di consegna rivoluzionaria
+                    Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Code_eat, puoi scegliere tra una varietà di servizi e tariffe
                     Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
                     Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna porteranno i tuoi articoli direttamente a casa tua.
                     Quindi, perché aspettare?
+                 </h2>
+                 <h2 class="short-text">
+                    Code_eat: una piattaforma di consegna rivoluzionaria
+                    Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. 
+                    Quindi, perché aspettare?
+                  
                  </h2>
             </div>
          </div>
@@ -119,6 +142,7 @@ import { defineComponent } from 'vue';
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 
 
+
 // import 'vue3-carousel/carousel.css';
     export default {
         name: 'HomePage',
@@ -129,6 +153,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
             store,
             restaurants: [],
             textlength : 100,
+          
 
         };
     }, 
@@ -140,8 +165,9 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
         methods: {
 
             getRestaurants() {
-                axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
-                    this.restaurants = res.data.results;
+                axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
+                    this.restaurants = response.data.results;
+
                 });
             },
 
@@ -165,10 +191,64 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
 @use './../assets/styles/partials/variables' as *;
 
 // jumbo/hero section
+
+body {
+    font-family: 'Mona Sans', sans-serif;
+   
+  }
 .home-container {
-   overflow-x: hidden;
 
 }
+
+// BOTTONI
+.button-type{
+    justify-content: start;
+    box-shadow: 3px 4px 0px 0px #899599;
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:20px;
+	padding:10px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+   
+}
+
+.button-type:hover{
+    transition: 1000ms;
+    padding: 10px 40px;
+    transform: translateY(-0px);
+    align-items: center;
+}
+
+.button-type2{
+    justify-content: start;
+    box-shadow: 3px 4px 0px 0px #899599;
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:15px;
+	padding:5px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+   
+}
+.button-type2:hover{
+    transition: 1000ms;
+    padding: 10px 20px;
+    transform: translateY(-0px);
+    align-items: center;
+}
+
+
 
 h3{
     font-size: 4.5rem;
@@ -246,48 +326,65 @@ h3 span::before{
     color: #ED6A5A;
     padding-top:100px;
     padding-bottom: 100px;
+    // padding-left: 150px;
+   
 }
 
 
 .cont-som{
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 .tex-second{
-  
+    
     font-size: 80px;
     font-weight: 900;
     color: #ED6A5A;
 }
-.text-area{
+.text-area-long{
   text-align:center;
   letter-spacing: 2px;
   vertical-align:middle;
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 20px;
-  font-stretch:ultra-condensed
+//   font-stretch:ultra-condensed;
+  padding-bottom: 200px;
+
+}
+// CAROSELLO
+.img-cont-circular img{ 
+  width:180%;
 }
 
-// @media only screen and (max-width: 768px) and (min-width:300px) {
+.card-carousel{
+    cursor: pointer;
+}
+.img-cont-circular{
+    width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+//   display:inline-block;
+  vertical-align:middle;
+//   object-fit: contain;
+}
 
-// .text-area {
-//     -webkit-line-clamp: 3;
-//     -webkit-box-orient: vertical;
-//     max-width: 300px;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     height:670px;
-  
-// }
+.short-text{
+    display: none;
+}
+@media (max-width: 768px) {
+    .short-text { 
+        display: inline-block;
+        padding-bottom: 100px;
+     }
+    .text-area-long { display: none; }
+}
 
-   
-// }
-
-// @media only screen and (max-width: 768px) {
-
-
-
-
-// }
 
 
 </style>
+
+
+
+
+
