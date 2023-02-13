@@ -33,6 +33,10 @@
                             </ul>
                             <p> <span class="fw-bold">Totale:</span>  {{ cartTotal }} &#8364;</p>
                             <button class="btn btn-primary" @click="clearCart()">Svuota</button>
+                            <br>
+                            <router-link :to="{ name: 'checkout' }">
+                              <button class="mt-3">checkout</button>
+                            </router-link>
                         </div>
                         <!-- FINE CARRELLO -->
 
@@ -143,9 +147,9 @@ import { store } from '../store'
              this.getPlates)
         },
         addToCart(plate){
-            if (!store.cart) {
-                store.cart = [];
-            }
+            // if (!store.cart) {
+            //     store.cart = [];
+            // }
             let plateInCart = false;
             for (let i = 0; i < store.cart.length; i++) {
                 if (store.cart[i].slug === plate.slug) {
