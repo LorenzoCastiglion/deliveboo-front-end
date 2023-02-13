@@ -11,7 +11,7 @@ import { ref, onMounted } from 'vue'
 export default {
     name: 'TeamAnimation',
     setup() {
-        const phrase = ref("We are a team of web developers who specialize in creating visually stunning and user-friendly websites. With days of experience and a passion for innovation, they're dedicated to delivering exceptional results.")
+        const phrase = ref("Hai fame e non sai cosa ordinare? Non ti preoccupare, siamo qui per aiutarti! La nostra vasta gamma di ristoranti è qui per soddisfare ogni tua voglia. Che tu sia in vena di qualcosa di salutare o di un comfort food, abbiamo tutto ciò che ti serve per nutrire il tuo corpo e la tua anima")
         const targetEl = ref(null)
         const hoverChars = ref(null)
 

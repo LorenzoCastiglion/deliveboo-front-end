@@ -43,8 +43,9 @@
 
                
             </div>
+
                 
-        </div>
+     
 
                 <div class="container">
                          <router-link class="button-type " :to="{name:'restaurants'}">Tipologie di Ristorante</router-link> 
@@ -131,6 +132,8 @@
        
     </section>
 
+
+
     
 </template>
 
@@ -171,6 +174,7 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
                 });
             },
 
+
             trimText(text){
             if(text.length > this.textlength){
                 return text.substr(0,this.textlength) + '...';
@@ -183,6 +187,10 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
     this.getRestaurants();
   },
 
+
+
+     
+       
 
     }
 </script>

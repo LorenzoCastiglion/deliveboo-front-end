@@ -10,14 +10,53 @@
   <div class="container col-12">
       <TextAnimation></TextAnimation>
   </div>
-  <dic class="col-12">
+
+  <div class="col-12">
       
-            <Carousel></Carousel>
-  </dic>
+      <CarouselRestaurants>
+
+      </CarouselRestaurants>
+</div>
+
+
+
+  <!-- <div class="col-12">
+      
+            <Carousel>
+
+            </Carousel>
+  </div> -->
+
+  <section>
+    <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i>cerca tipologia</button>
+    <div v-if="showTypes">
+        <label for="types"></label>
+        <select name="types" id="types"  v-model="selectedType">
+            <option v-for="tipo in types" :value="tipo.id"  >
+                {{ tipo.name }}
+            </option>
+        </select>
+        <button @click="filterRestaurants">Filtra ristoranti</button>
+    </div>
+</section>
+  
 
      
     </section>
+<!-- seleziona ristoranti  -->
 
+
+<section v-if="selectedType">
+    <div v-if="filteredRestaurants.length">
+        <h2>Ristoranti appartenenti alla tipologia: {{ selectedType }}</h2>
+        <div v-for="restaurant in filteredRestaurants" :key="restaurant.id" >
+            {{ restaurant.name }}
+        </div>
+    </div>
+    <div v-else>
+        <p>al momento non ci sono ristornati per questa tipologia</p>
+    </div>
+</section>
    
 
 
@@ -25,7 +64,7 @@
 
 <script>
 import TextAnimation from '../components/TextAnimation.vue';
-import Carousel from '../components/Carousel.vue';
+import CarouselRestaurants from '../components/CarouselRestaurants.vue';
 import axios from 'axios';
 import { store } from '../store';
 export default {
@@ -33,18 +72,24 @@ export default {
 
     components: {
         TextAnimation,
-        Carousel,
+        CarouselRestaurants,
         
     },
 
     data(){
         return {
+            
             store,
             restaurants: [],
-           
+            types: [],
+            showTypes: false,
+            selectedType: null,
+            filteredRestaurants: []
+
         }
     },
 
+   
 
     methods: {
 
@@ -52,7 +97,7 @@ export default {
             getRestautants(){
                 axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) =>{
                     
-                    console.log(response.data.results)
+                    // console.log(response.data.results)
                     this.restaurants = response.data.results
                 })
 
@@ -62,8 +107,21 @@ export default {
                 axios.get(`${this.store.apiBaseUrl}/plates`).then((response) =>{
                     
                     console.log(response.data.results)
-                    this.restaurants = response.data.results
+                    this.plates = response.data.results
                 })
+            },
+            showAllTypes() {
+                this.showTypes = !this.showTypes;
+            },
+            filterRestaurants(){
+                const data = {params: {
+                        type_id: this.selectedType, 
+                    }};
+                axios.get("http://127.0.0.1:8000/api/filter", data).then((response) => {
+                console.log(response.data.results);
+                this.filteredRestaurants = response.data.results;
+                console.log(this.filteredRestaurants);
+            });
             }
 
         },
@@ -71,7 +129,10 @@ export default {
         mounted(){
             this.getRestautants()
             this.getPlate()
-       
+            axios.get("http://127.0.0.1:8000/api/types").then((response) => {
+                console.log(response.data.results);
+                this.types = response.data.results;
+            });
         }
     }
 
@@ -84,9 +145,9 @@ export default {
 @use './../assets/styles/partials/variables' as *;
 
 .restaurants-container {
-    position: relative;
+position: relative;
    
-   overflow-x: hidden;
+overflow-x: hidden;
   
 
 }
@@ -94,7 +155,7 @@ export default {
 .blobtainer{
     height: 100vh;
     top:1%;
-    right: -10%;
+    right: -40%;
     z-index: -10;
     
 }
