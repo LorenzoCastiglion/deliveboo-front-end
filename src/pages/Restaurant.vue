@@ -1,36 +1,41 @@
 <template>
-    <section v-if="restaurant">
-
-{{ restaurant.name }}
-
-
-<div class="blob-img">
-    <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
-</div>
-
-
-        <div v-for="(plate,index) in restaurant.plates" :key="index">
-
-            {{ plate.name }}
-
+  <section v-if="restaurant">
+    <h2 class="mb-5">{{ restaurant.name }}</h2>
+    <div class="blob-img">
+        <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
+    </div>
+    <!-- menù -->
+    <div class="d-flex">
+        <div class="me-5">
+            <h4>Scegli i tuoi piatti</h4>
+            <div v-for="(plate,index) in restaurant.plates" :key="index">
+            <p>{{ plate.name }}: <span>{{ plate.price }} euro</span></p> 
+            <button @click="addToCart(plate)">Aggiungi al carrello</button>
+            <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
+            <p>quantità: {{ plate.quantity }}</p>
+            </div>
         </div>
-    </section>
-
-    <section class="loader " v-else>
-            
-                <div class="load-img">
-                    <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
-                    
-                   </div> 
-                   <div class="progress-loader mt-5">
-                        <div class="progress"></div>
-                    </div>
-                   
-                
-
-
-
-        </section>
+        <!-- carrello -->
+        <div>
+            <p>CARRELLO:</p>
+            <ul>
+                <li v-for="(item, i) in store.cart" :key="i">
+                    <p> <span class="fw-bold">{{ item.name }}</span>  x{{ item.quantity }}</p>
+                </li>
+            </ul>
+            <button @click="clearCart()">Svuota</button>
+        </div>
+    </div>
+  </section>
+  <!-- loader -->
+  <section class="loader " v-else>
+      <div class="load-img">
+          <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
+      </div> 
+      <div class="progress-loader mt-5">
+          <div class="progress"></div>
+      </div>
+  </section>
 </template>
 
 <script>
@@ -78,12 +83,58 @@ import { store } from '../store'
         getApi(){
             return (this.getRestaurant,
              this.getPlates)
-        }
+        },
+        addToCart(plate){
+            if (!store.cart) {
+                store.cart = [];
+            }
+            let plateInCart = false;
+            for (let i = 0; i < store.cart.length; i++) {
+                if (store.cart[i].slug === plate.slug) {
+                store.cart[i].quantity++;
+                plateInCart = true;
+                break;
+                }
+            }
+            if (!plateInCart) {
+                plate.quantity = 1;
+                store.cart.push(plate);
+            }
+            localStorage.setItem("cart", JSON.stringify(store.cart));
+            console.log("Piatto aggiunto al carrello"); 
+            console.log( store.cart); 
+        },
+
+        removeFromCart(plate) {
+            if(store.cart.length>0){
+                for (let i = 0; i < store.cart.length; i++) {
+                    if (store.cart[i].slug === plate.slug) {
+                        store.cart[i].quantity--;
+                        if (store.cart[i].quantity === 0) {
+                            store.cart.splice(i, 1);
+                        }
+                        break;
+                    }
+                }
+                localStorage.setItem("cart", JSON.stringify(store.cart));
+                console.log("Plate rimosso dal carrello");
+            }
+            console.log( store.cart); 
+        },
+        clearCart() {
+            store.cart = [];
+            localStorage.removeItem("cart");
+            console.log( store.cart); 
+            console.log("Carrello svuotato");
+            },
         
     },
 
     mounted() {
-        
+      const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            store.cart = JSON.parse(storedCart);
+        }
 
         setTimeout(
             this.getRestaurant,1500,
