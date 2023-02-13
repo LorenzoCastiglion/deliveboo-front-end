@@ -37,19 +37,19 @@
                
             </div>
 
-        </div>
-
-       
-
+        </div>   
        
 
 
-     
 
-        
-       
+
+
+
+
+
+
+
     </section>
-
     
 </template>
 
@@ -62,9 +62,9 @@ import CreditCard from '../components/CreditCard.vue';
             CreditCard
         }
 
+     
         
-
-
+        
     }
 </script>
 
