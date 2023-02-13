@@ -20,30 +20,31 @@
 
 
 
-  <div class="col-12">
+  <!-- <div class="col-12">
       
             <Carousel>
 
             </Carousel>
-  </div>
+  </div> -->
 
+  <section>
+    <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i>cerca tipologia</button>
+    <div v-if="showTypes">
+        <label for="types"></label>
+        <select name="types" id="types"  v-model="selectedType">
+            <option v-for="tipo in types" :value="tipo.id"  >
+                {{ tipo.name }}
+            </option>
+        </select>
+        <button @click="filterRestaurants">Filtra ristoranti</button>
+    </div>
+</section>
   
 
      
     </section>
 <!-- seleziona ristoranti  -->
-<section>
-    <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i>cerca tipologia</button>
-    <div v-if="showTypes">
-        <label for="types"></label>
-        <select name="types" id="types"  v-model="selectedType">
-            <option v-for="type in types" :value="type.id" @click="filterRestaurants">
-                {{ type.name }}
-            </option>
-        </select>
-        <!-- <button >Filtra ristoranti</button> -->
-    </div>
-</section>
+
 
 <section v-if="selectedType">
     <div v-if="filteredRestaurants.length">
@@ -77,6 +78,7 @@ export default {
 
     data(){
         return {
+            
             store,
             restaurants: [],
             types: [],
@@ -128,7 +130,7 @@ export default {
             this.getRestautants()
             this.getPlate()
             axios.get("http://127.0.0.1:8000/api/types").then((response) => {
-                // console.log(response.data.results);
+                console.log(response.data.results);
                 this.types = response.data.results;
             });
         }
@@ -143,9 +145,9 @@ export default {
 @use './../assets/styles/partials/variables' as *;
 
 .restaurants-container {
-    position: relative;
+position: relative;
    
-   overflow-x: hidden;
+overflow-x: hidden;
   
 
 }
@@ -153,7 +155,7 @@ export default {
 .blobtainer{
     height: 100vh;
     top:1%;
-    right: -10%;
+    right: -40%;
     z-index: -10;
     
 }
