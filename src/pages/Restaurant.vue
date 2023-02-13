@@ -23,6 +23,7 @@
                     <p> <span class="fw-bold">{{ item.name }}</span>  x{{ item.quantity }}</p>
                 </li>
             </ul>
+            <p >Totale: {{ total }} euro</p>
             <button @click="clearCart()">Svuota</button>
         </div>
     </div>
@@ -53,7 +54,18 @@ import { store } from '../store'
                 
             }
         },
-
+        computed: {
+            total () {
+              if (!store.cart) {
+                store.cart = [];
+            }
+                let total = 0
+                for (let i = 0; i < store.cart.length; i++) {
+                    total += store.cart[i].price * store.cart[i].quantity
+                }
+                return total
+            }
+        },
 
         methods: {
         getRestaurant() {
@@ -97,6 +109,16 @@ import { store } from '../store'
                 }
             }
             if (!plateInCart) {
+              for (let i = 0; i < store.cart.length; i++){
+                if(plate.restaurant_id !== store.cart[i].restaurant_id){
+                  if(confirm('Vuoi svuotare il carrello e ordinare dal nuovo ristorante?')){
+                    store.cart = [];
+                    console.log('non corrispondono');
+                  }else{
+                    return;
+                  }
+              }
+              }
                 plate.quantity = 1;
                 store.cart.push(plate);
             }
@@ -117,7 +139,7 @@ import { store } from '../store'
                     }
                 }
                 localStorage.setItem("cart", JSON.stringify(store.cart));
-                console.log("Plate rimosso dal carrello");
+                console.log("Piatto rimosso dal carrello");
             }
             console.log( store.cart); 
         },
