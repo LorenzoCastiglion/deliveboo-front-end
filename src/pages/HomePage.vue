@@ -7,16 +7,16 @@
         <section
             class="inner-sect d-flex justify-content-center container-xl align-items-center flex-wrap justify-content-md-center m-auto">
 
-            <div class="position-absolute blobtainer col-12 ">
+            <div class="position-absolute blobtainer col-12 overflow-visible ">
                 <div class="blob "></div>
             </div>
-            <div class="position-absolute blobtainer2 col-12  ">
+            <div class="position-absolute blobtainer2 col-12 overflow-visible ">
                 <div class="blob2 "></div>
             </div>
-            <div class="position-absolute blobtainer1 col-12  ">
+            <div class="position-absolute blobtainer1 col-12 overflow-visible ">
                 <div class="blob1 "></div>
             </div>
-            <div class="position-absolute blobtainer3 col-12  ">
+            <div class="position-absolute blobtainer3 col-12 overflow-visible ">
                 <div class="blob3 "></div>
             </div>
 
