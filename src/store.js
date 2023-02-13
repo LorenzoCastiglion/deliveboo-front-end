@@ -20,6 +20,105 @@ export const store = reactive({
         
     ],
 
+    homePaths: [
+        {
+            path: 'vicio.png',
+            alt: 'vicio',
+            info: 'vicio',
+            id: 1,
+        },
+        {
+            path: 'Sushi-Bar.png',
+            alt: 'Sushi-Bar',
+            info: 'Sushi-Bar',
+            id: 2,
+        },
+        {
+            path: 'starbucks.png',
+            alt: 'starbucks',
+            info: 'starbucks',
+            id: 3,
+        },
+        {
+            path: 'pizza-hut.png',
+            alt: 'pizza-hut',
+            info: 'pizza-hut',
+            id: 4,
+        },
+        {
+            path: 'pepsi.png',
+            alt: 'pepsi',
+            info: 'pepsi',
+            id: 5,
+        },
+        {
+            path: 'Old-Wild-West.png',
+            alt: 'Old-Wild-West',
+            info: 'Old-Wild-West',
+            id: 6,
+        },
+        {
+            path: 'Mc-Donald.png',
+            alt: 'Mc-Donald',
+            info: 'Mc-Donald',
+            id: 7,
+        },
+        {
+            path: 'La-tagliatella.png',
+            alt: 'La-tagliatella',
+            info: 'La-tagliatella',
+            id: 8,
+        },
+        {
+            path: 'kfc.png',
+            alt: 'kfc',
+            info: 'kfc',
+            id: 9,
+        },
+        {
+            path: 'kebab.png',
+            alt: 'kebab',
+            info: 'kebab',
+            id: 10,
+        },
+        {
+            path: 'honest-green.png',
+            alt: 'honest-green',
+            info: 'honest-green',
+            id: 11,
+        },
+        {
+            path: 'Goiko.png',
+            alt: 'Goiko',
+            info: 'Goiko',
+            id: 12,
+        },
+        {
+            path: 'Fanta.png',
+            alt: 'Fanta',
+            info: 'Fanta',
+            id: 13,
+        },
+        {
+            path: 'eatily.png',
+            alt: 'eatily',
+            info: 'eatily',
+            id: 14,
+        },
+        {
+            path: 'Burger-King.png',
+            alt: 'Burger-King',
+            info: 'Burger-King',
+            id: 15,
+        },
+        {
+            path: 'Coca-Cola.png',
+            alt: 'Coca-Cola',
+            info: 'Coca-Cola',
+            id: 16,
+        },
+    ],
+
     footerItems:[
         {
             label: 'Restaurants',
@@ -85,6 +184,7 @@ export const store = reactive({
                 { pagename: 'Youtube', url: '#', icon: 'fa-youtube' }
             ]
         }
+
          
     ],
 })
