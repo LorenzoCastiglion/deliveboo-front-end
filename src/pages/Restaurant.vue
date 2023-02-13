@@ -23,18 +23,18 @@
                             <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
                         </div>
                         
-                        <!-- CARELLO -->
+                        <!-- CARRELLO -->
                         <div class="my-cart">
-                            <p class="pt-3 fw-semibold">Carello:</p>
+                            <p class="pt-3 fw-semibold">Carrello:</p>
                             <ul>
                                 <li v-for="(item, i) in store.cart" :key="i">
                                     <p> <span class="fw-bold">{{ item.name }}</span> x{{ item.quantity }}</p>
                                 </li>
                             </ul>
-                        
+                            <p> <span class="fw-bold">Totale:</span>  {{ cartTotal }} &#8364;</p>
                             <button class="btn btn-primary" @click="clearCart()">Svuota</button>
                         </div>
-                        <!-- FINE CARELLO -->
+                        <!-- FINE CARRELLO -->
 
                     </div>
 
@@ -100,7 +100,18 @@ import { store } from '../store'
                 
             }
         },
-
+        computed: {
+            cartTotal () {
+              if (!store.cart) {
+                store.cart = [];
+            }
+                let total = 0
+                for (let i = 0; i < store.cart.length; i++) {
+                    total += store.cart[i].price * store.cart[i].quantity
+                }
+                return total
+            }
+        },
 
         methods: {
         getRestaurant() {
@@ -144,6 +155,16 @@ import { store } from '../store'
                 }
             }
             if (!plateInCart) {
+              for (let i = 0; i < store.cart.length; i++){
+                if(plate.restaurant_id !== store.cart[i].restaurant_id){
+                  if(confirm('Vuoi svuotare il carrello e ordinare dal nuovo ristorante?')){
+                    store.cart = [];
+                    console.log('non corrispondono');
+                  }else{
+                    return;
+                  }
+              }
+              }
                 plate.quantity = 1;
                 store.cart.push(plate);
             }
