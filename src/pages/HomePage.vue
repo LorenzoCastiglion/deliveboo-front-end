@@ -39,75 +39,32 @@
 
         </div>   
        
-    </section>
-    <!-- seleziona ristoranti  -->
-    <section>
-        <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i>cerca tipologia</button>
-        <div v-if="showTypes">
-            <label for="types"></label>
-            <select name="types" id="types"  v-model="selectedType">
-                <option v-for="type in types" :value="type.id" @click="filterRestaurants">
-                    {{ type.name }}
-                </option>
-            </select>
-            <!-- <button >Filtra ristoranti</button> -->
-        </div>
-    </section>
 
-    <section v-if="selectedType">
-        <div v-if="restaurants.length">
-            <h2>Ristoranti appartenenti alla tipologia: {{ selectedType }}</h2>
-            <div v-for="restaurant in restaurants" :key="restaurant.id" >
-                {{ restaurant.name }}
-            </div>
-        </div>
-        <div v-else>
-            <p>al momento non ci sono ristornati per questa tipologia</p>
-        </div>
+
+
+
+
+
+
+
+
+
     </section>
+    
 </template>
 
 <script>
 import CreditCard from '../components/CreditCard.vue';
-import axios from "axios";
-import { store } from "../store";
     export default {
         name: 'HomePage',
 
         components: {
             CreditCard
-        },
-
-        data() {
-            return {
-                types: [],
-                showTypes: false,
-                restaurants: [],
-                selectedType: null,
-            };
-        },
-        mounted() {
-            axios.get("http://127.0.0.1:8000/api/types").then((response) => {
-                // console.log(response.data.results);
-                this.types = response.data.results;
-            });
-            
-        },
-        methods: {
-            showAllTypes() {
-                this.showTypes = !this.showTypes;
-            },
-            filterRestaurants(){
-                const data = {params: {
-                        type_id: this.selectedType, 
-                    }};
-                axios.get("http://127.0.0.1:8000/api/filter", data).then((response) => {
-                console.log(response.data.results);
-                this.restaurants = response.data.results;
-                console.log(this.restaurants);
-            });
-            }
         }
+
+     
+        
+        
     }
 </script>
 
