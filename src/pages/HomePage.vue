@@ -1,135 +1,125 @@
 <template>
 
     <!-- sezione hero e ricerca -->
-    <section class="home-container position-relative d-flex justify-content-center container-xl align-items-center flex-wrap justify-content-md-center ">
+    <section class="home-container position-relative  ">
 
-        <div class="position-absolute blobtainer col-12 ">
-            <div class="blob "></div>
-        </div>
 
-        <div class="position-absolute blobtainer1 col-12  ">
-            <div class="blob1 "></div>
-        </div>
-
-        <div class="position-absolute blobtainer2 col-12  ">
-            <div class="blob2 "></div>
-        </div>
-        
-        <!-- <div class="blob1 position-absolute"></div>
-        <div class="blob2 position-absolute"></div> -->
-        <div class="d-flex container ">
-            <div class="d-flex col-sm-12 col-md-6 justify-content-end align-items-center ">
-                <h3 class="text-start">Hai voglia di: <br>
-                
-                    <span></span> </h3>
-
-            </div>
-            <div class=" col-6 ">
-                    
-                <div class="d-flex flex-wrap col-12">
-                        
-                    <div class="col-12">
-                        <img class="w-100" src="../../public/img/ramen.png" alt="">
-                    </div>
-                    <div class="col-6">
-                        <img class="w-100" src="../../public/img/riz.png" alt="">
-                    </div>
-                    <div class="col-6">
-                        <img class="w-100" src="../../public/img/salad.png" alt="">
-                    </div>
-                </div>
-
+        <section class="inner-sect d-flex justify-content-center container-xl align-items-center flex-wrap justify-content-md-center m-auto">
             
+            <div class="position-absolute blobtainer col-12 ">
+                <div class="blob "></div>
             </div>
-               
+            <div class="position-absolute blobtainer1 col-12  ">
+                <div class="blob1 "></div>
             </div>
-
-                
-     
-
-                <div class="container">
-                         <router-link class="button-type " :to="{name:'restaurants'}">Tipologie di Ristorante</router-link> 
-                     </div>  
-
-       <!-- Scritta centrale -->
-       
-        <div class="container justify-content-sm-center col-md-12">
-            <div class="d-flex ">
-                <h1 class="scritta-centrale text-start">
-                    i nostri partners
-                </h1>
-            </div>  
-        </div>
-
-    <!-- Fine scritta --> 
-
-    
-
-
-
-        <!-- Carousel -->
-     <div class="container-fluid col-sm-12">
-            <div class="carosel-main col-sm-12 ">
-                <!-- autoplay=10000 -->
-                <Carousel :items-to-show="2.5" :wrap-around="true"   > 
-                    <Slide v-for="(restaurant, index ) in restaurants" :key="index">
-                        <div class=" card-carousel text-center mx-5 bg-transparent px-5 pb-5 rounded-3">
-                            <div class="d-flex mt-2  align-items-center">
-                            <div class=" overflow-hidden img-cont-circular">
-                                <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
-                                <img :src="`${store.imagBasePath}${restaurant.image}`" alt="">
-                            </div>
+            <div class="position-absolute blobtainer2 col-12  ">
+                <div class="blob2 "></div>
+            </div>
+            
+            <!-- <div class="blob1 position-absolute"></div>
+            <div class="blob2 position-absolute"></div> -->
+            <div class="d-flex container ">
+                <div class="d-flex col-sm-12 col-md-6 justify-content-end align-items-center ">
+                    <h3 class="text-start">Hai voglia di: <br>
+            
+                        <span></span>
+            
+                        <div class="col-sm-12 col-md-6">
+                             <router-link class="button-type " :to="{name:'restaurants'}">Trova Ristorante</router-link>
+                         </div>
+            
+                    </h3>
+            
+                </div>
+                <div class=" col-6 ">
+            
+                    <div class="d-flex flex-wrap col-12">
+            
+                        <div class="col-12">
+                            <img class="w-100" src="../../public/img/ramen.png" alt="">
                         </div>
-                            <h4 class="pt-4">{{ restaurant.name }}</h4>
-                            <p class="slide-content">{{ this.trimText(restaurant.description)  }}</p>
-                                <div>
-                                    <router-link  class="button-type2 " :to="{name: 'restaurant',params:{slug:restaurant.slug}}">più dettagli</router-link>
-                                </div>
-                             <div class="d-flex pt-3">
-                                <p class="mb-0 ms-3 text-capitalize ">{{restaurant.address  }}</p>
-                                <p class="mb-0 ms-3 text-capitalize ">{{restaurant.phone  }}</p>
-                            </div>
+                        <div class="col-6">
+                            <img class="w-100" src="../../public/img/riz.png" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="w-100" src="../../public/img/salad.png" alt="">
+                        </div>
                     </div>
-                    </Slide>
-
-                    <template #addons>
-                        <Navigation />
-                    </template>
-                </Carousel>
-
-        
-            </div>       
-        </div>
-         <!-- Carousel fine -->
-
-         <div class="container-fluid d-flex justify-content-md-end justify-content-sm-center col-md-12 cont-som ">
-            <div class="p-4 " >
-                <h1 class="tex-second">SCEGLI</h1>
-                <h1 class="tex-second">ORDINA</h1>
-                <h1 class="tex-second">MANGIA</h1>
+            
+                </div>
+            
+                </div>
+            
+                    
+            
+                   <!-- Scritta centrale -->
+            <div class="container justify-content-sm-center col-md-12">
+                <div class="d-flex ">
+                    <h1 class="scritta-centrale text-start">
+                        i nostri partners
+                    </h1>
+                </div>
             </div>
-
-         
-         </div>
-         <!-- TESTO -->
-         <div class=" container-fluid d-flex">
-            <div class="col-sm-12  justify-content-center ">
-                <h2 class="text-area-long"> Code_eat: una piattaforma di consegna rivoluzionaria
-                    Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Code_eat, puoi scegliere tra una varietà di servizi e tariffe
-                    Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
-                    Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna porteranno i tuoi articoli direttamente a casa tua.
-                    Quindi, perché aspettare?
-                 </h2>
-                 <h2 class="short-text">
-                    Code_eat: una piattaforma di consegna rivoluzionaria
-                    Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. 
-                    Quindi, perché aspettare?
-                  
-                 </h2>
+            
+                <!-- Fine scritta -->
+            <!-- Carousel -->
+                 <div class="container-fluid col-sm-12">
+                <div class="carosel-main col-sm-12 ">
+                    <!-- autoplay=10000 -->
+                    <Carousel :items-to-show="2.5" :wrap-around="true"   >
+                        <Slide v-for="(restaurant, index ) in restaurants" :key="index">
+                            <div class=" card-carousel text-center mx-5 bg-transparent px-5 pb-5 rounded-3">
+                                <div class="d-flex mt-2  align-items-center">
+                                <div class=" overflow-hidden img-cont-circular">
+                                    <!-- <img :src="`../../public/img/testimonial-avata-${slide.pic}.jpg`" alt=""> -->
+                                    <img :src="`${store.imagBasePath}${restaurant.image}`" alt="">
+                                </div>
+                            </div>
+                                <h4 class="pt-4">{{ restaurant.name }}</h4>
+                                <p class="slide-content">{{ this.trimText(restaurant.description)  }}</p>
+                                    <div>
+                                        <router-link  class="button-type2 " :to="{name: 'restaurant',params:{slug:restaurant.slug}}">più dettagli</router-link>
+                                    </div>
+                                 <div class="d-flex pt-3">
+                                    <p class="mb-0 ms-3 text-capitalize ">{{restaurant.address  }}</p>
+                                    <p class="mb-0 ms-3 text-capitalize ">{{restaurant.phone  }}</p>
+                                </div>
+                        </div>
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                        </template>
+                    </Carousel>
+            
+                </div>
             </div>
-         </div>
-
-       
+             <!-- Carousel fine -->
+             <div class="container-fluid d-flex justify-content-md-end justify-content-sm-center col-md-12 cont-som ">
+                <div class="p-4 " >
+                    <h2 class="tex-second">SCEGLI</h2>
+                    <h2 class="tex-second">ORDINA</h2>
+                    <h2 class="tex-second">MANGIA</h2>
+                </div>
+            
+             </div>
+             <!-- TESTO -->
+             <div class=" container-fluid d-flex">
+                <div class="col-sm-12  justify-content-center ">
+                    <h2 class="text-area-long"> Code_eat: una piattaforma di consegna rivoluzionaria
+                        Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Code_eat, puoi scegliere tra una varietà di servizi e tariffe
+                        Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
+                        Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna porteranno i tuoi articoli direttamente a casa tua.
+                        Quindi, perché aspettare?
+                     </h2>
+                     <h2 class="short-text">
+                        Code_eat: una piattaforma di consegna rivoluzionaria
+                        Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro.
+                        Quindi, perché aspettare?
+            
+                     </h2>
+                </div>
+             </div>
+        </section>
     </section>
 
 
@@ -280,7 +270,7 @@ h3 span::before{
 .blobtainer{
     height: 100vh;
     top:1%;
-    right: -10%;
+    right: -20%;
     z-index: -10;
     
 }
@@ -390,6 +380,15 @@ h3 span::before{
     .tex-second{
         color:$yellow ;
     }
+}
+
+
+.carousel__slide--next {
+    opacity: 0.5;
+}
+
+.carousel__slide--prev {
+    opacity: 0.5;
 }
 
 
