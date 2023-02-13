@@ -5,6 +5,7 @@ import Restaurants from './pages/Restaurants.vue';
 import About from './pages/About.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Plate from './pages/Plate.vue';
+import Checkout from './pages/Checkout.vue';
 
 
 
@@ -36,6 +37,14 @@ const router = createRouter({
             name: 'plate',
             component: Plate
         },
+
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: Checkout
+        },
+
+
 
        
     ]
