@@ -1,41 +1,88 @@
 <template>
-  <section v-if="restaurant">
-    <h2 class="mb-5">{{ restaurant.name }}</h2>
-    <div class="blob-img">
-        <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
-    </div>
-    <!-- menù -->
-    <div class="d-flex">
-        <div class="me-5">
-            <h4>Scegli i tuoi piatti</h4>
-            <div v-for="(plate,index) in restaurant.plates" :key="index">
-            <p>{{ plate.name }}: <span>{{ plate.price }} euro</span></p> 
-            <button @click="addToCart(plate)">Aggiungi al carrello</button>
-            <button @click="removeFromCart(plate)">Rimuovi dal carrello</button>
-            <p>quantità: {{ plate.quantity }}</p>
+    <section v-if="restaurant">
+        <div class="container pt-5">
+            <!-- Ristorante Dettagli  -->
+            <h1>{{ restaurant.name }}</h1>
+            <div class="info d-flex">
+                <p><i class="fa-solid fa-location-dot"></i> {{ restaurant.address }} </p>
+                <p>Cellulare: {{ restaurant.phone }} </p>
+                <p>Aperti da: {{ restaurant.opening_days }} </p>
+                <p>Apre alle: {{ restaurant.opening_hours }} </p>
+                <p>Chiude alle: {{ restaurant.closing_hours}} </p>
+            </div>
+            <p>{{ restaurant.description }}</p>
+
+            <!--FINE Ristorante Dettagli  -->
+
+            
+            <div class="card border-0">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        
+                        <div class="blob-img">
+                            <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
+                        </div>
+                        
+                        <!-- CARELLO -->
+                        <div class="my-cart">
+                            <p class="pt-3 fw-semibold">Carello:</p>
+                            <ul>
+                                <li v-for="(item, i) in store.cart" :key="i">
+                                    <p> <span class="fw-bold">{{ item.name }}</span> x{{ item.quantity }}</p>
+                                </li>
+                            </ul>
+                        
+                            <button class="btn btn-primary" @click="clearCart()">Svuota</button>
+                        </div>
+                        <!-- FINE CARELLO -->
+
+                    </div>
+
+                    <!-- MENU PIATTI -->
+                    <div class="col-md-8">
+                        <h4>Scegli i tuoi piatti</h4>
+                        <div class="container pt-2 pb-4">
+                            <div class="row g-3">
+                                <div class="my-card-menu border rounded-5" v-for="(plate, index) in restaurant.plates"
+                                    :key="index" >
+                                    <div class="card-body d-flex ">
+                                        <div class="me-3">
+                                            <img :src="`${store.imagBasePath}${plate.image}`" alt="">
+                                        </div>
+                                        <div>
+                                            <p class="fw-semibold">{{ plate.name }}</p>
+                                            <p>{{ plate.price }} &#8364;</p>
+
+                                            <p v-if="( plate.allergens )">Allergeni: {{ plate.allergens }} </p>
+                                            <p v-else="( plate.allergens )"> Non ci sono allergeni</p>
+
+                                            <!-- <p>{{ plate.available == 1 ? 'Sì è disponibile' : 'No disponibile' }}</p> -->
+                                            <button class="my-button fa-solid fa-plus fa-beat" @click="addToCart(plate)"></button>
+                                            <button class="my-button fa-solid fa-minus fa-beat" @click="removeFromCart(plate)"></button>
+                                            <!-- <p>quantità: {{ plate.quantity }}</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FINE MENU PIATTI -->
+                </div>
             </div>
         </div>
-        <!-- carrello -->
-        <div>
-            <p>CARRELLO:</p>
-            <ul>
-                <li v-for="(item, i) in store.cart" :key="i">
-                    <p> <span class="fw-bold">{{ item.name }}</span>  x{{ item.quantity }}</p>
-                </li>
-            </ul>
-            <button @click="clearCart()">Svuota</button>
+
+    </section>
+
+    <!-- LOADER -->
+    <section class="loader " v-else>
+        <div class="load-img">
+            <img class="w-100" src="../../public/img/logo_text_b.png" alt="">
         </div>
-    </div>
-  </section>
-  <!-- loader -->
-  <section class="loader " v-else>
-      <div class="load-img">
-          <img class="w-100"  src="../../public/img/logo_text_b.png" alt="">
-      </div> 
-      <div class="progress-loader mt-5">
-          <div class="progress"></div>
-      </div>
-  </section>
+        <div class="progress-loader mt-5">
+            <div class="progress"></div>
+        </div>
+    </section>
+
 </template>
 
 <script>
@@ -150,11 +197,79 @@ import { store } from '../store'
 </script>
 
 <style lang="scss" scoped>
-
 @use './../assets/styles/partials/variables' as *;
 
+// Ristorante Dettagli
+.info {
+    p:not(:first-child) {
+        margin: 0 5px;
+    }
 
+    p::after {
+        content: " \00B7 ";
+    }
 
+    p:last-child:after {
+        content: " ";
+    }
+}
+
+// MENU CARDS
+.my-card-menu{
+	margin: 10px 10px;
+	width: calc(50% - 20px);
+	background-color: white;
+}
+
+// Immagine piatto singlo
+.card-body img {
+    width: 150px;
+    height: 150px;
+    // object-fit: cover;
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px){
+    .card-body img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.fa-plus:hover{
+    color: blue;
+}
+
+.fa-minus:hover{
+    color: red;
+}
+.fa-solid:not(:hover) {
+   animation: none;
+}
+
+// CARELLO
+.my-cart{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.my-button {
+    background-color: white;
+    border: none;
+    color: black;
+    // padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+
+// Loader
 .loader {
    height: 70vh;
 }
