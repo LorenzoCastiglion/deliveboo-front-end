@@ -2,8 +2,7 @@ import {reactive} from 'vue';
 
 export const store = reactive({
     apiBaseUrl: 'http://127.0.0.1:8000/api',
-    imagBasePath: 'http://127.0.0.1:8000/storage/',
-    
+    imagBasePath: 'http://127.0.0.1:8000/storage/',    
 
     menuItems: [
         {
@@ -74,16 +73,18 @@ export const store = reactive({
                 }
             ]
         },
+
+        {
+            label: 'Social',
+            routeName: '#',
+            storeItem:[
+                { pagename: 'Facebook', url: '#', icon: 'fa-facebook'},
+                { pagename: 'Twitter', url: '#', icon: 'fa-twitter' },
+                { pagename: 'Instagram', url: '#', icon: 'fa-instagram' },
+                { pagename: 'Github', url: '#', icon: 'fa-github' },
+                { pagename: 'Youtube', url: '#', icon: 'fa-youtube' }
+            ]
+        }
          
     ],
-
-  
-    socialLinks: [
-        { name: 'Facebook', url: '#', icon: 'fa-facebook'},
-        { name: 'Twitter', url: '#', icon: 'fa-twitter' },
-        { name: 'Instagram', url: '#', icon: 'fa-instagram' },
-        { name: 'Github', url: '#', icon: 'fa-github' },
-        { name: 'Youtube', url: '#', icon: 'fa-youtube' }
-        ],
-
 })
