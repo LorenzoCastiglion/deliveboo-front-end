@@ -11,7 +11,7 @@ import { ref, onMounted } from 'vue'
 export default {
     name: 'TeamAnimation',
     setup() {
-        const phrase = ref("Hai fame e non sai cosa ordinare? Non ti preoccupare, siamo qui per aiutarti! La nostra vasta gamma di ristoranti è qui per soddisfare ogni tua voglia. Che tu sia in vena di qualcosa di salutare o di un comfort food, abbiamo tutto ciò che ti serve per nutrire il tuo corpo e la tua anima")
+        const phrase = ref("Che Mangiamo?")
         const targetEl = ref(null)
         const hoverChars = ref(null)
 
@@ -76,9 +76,9 @@ body {
 
 h3 {
     
-    font-size: 42px;
+    font-size: 100px;
     color:$black;
-    font-weight: 200;
+    font-weight: bold;
     cursor: default;
     letter-spacing: 0.03em;
    
@@ -106,6 +106,12 @@ h3 {
     
     
 
+}
+
+@media (max-width: 768px){
+    h3{
+        font-size: 50px;
+    }
 }
 
 </style>
