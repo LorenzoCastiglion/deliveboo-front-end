@@ -40,7 +40,7 @@
                 </div>
 
             
-
+            </div>
                
             </div>
 
@@ -205,7 +205,7 @@ body {
    
   }
 .home-container {
-
+overflow: hidden;
 }
 
 // BOTTONI
