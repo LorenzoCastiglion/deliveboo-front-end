@@ -386,6 +386,10 @@ h3 span::before{
         padding-bottom: 100px;
      }
     .text-area-long { display: none; }
+
+    .tex-second{
+        color:$yellow ;
+    }
 }
 
 
