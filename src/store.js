@@ -10,11 +10,11 @@ export const store = reactive({
             routeName: 'homepage'
         },
         {
-            label: 'Restaurants',
+            label: 'Ristoranti',
             routeName: 'restaurants'
         },
         {
-            label: 'About',
+            label: 'Chi Siamo',
             routeName: 'about'
         },
         
@@ -121,7 +121,7 @@ export const store = reactive({
 
     footerItems:[
         {
-            label: 'Restaurants',
+            label: 'Ristoranti',
             routeName: 'restaurants',
             storeItem:[
                 {
@@ -146,28 +146,28 @@ export const store = reactive({
             ]
         },
         {
-            label: 'About',
+            label: 'Code_Eat',
             routeName: 'about',
             storeItem:[
                 {
 
-                    pagename: 'Who',
+                    pagename: 'Contatti',
                     url:"#"
                 },
                 {
-                    pagename: 'Where',
+                    pagename: 'Diventa nostro partner',
                     url:"#"
                 },
                 {
-                    pagename: 'When',
+                    pagename: 'Lavora con noi',
                     url:"#"
                 },
                 {
-                    pagename: 'How',
+                    pagename: 'Informativa sulla privacy',
                     url:"#"
                 },
                 {
-                    pagename: 'Why',
+                    pagename: 'Termini e Condizioni',
                     url:"#"
                 }
             ]
