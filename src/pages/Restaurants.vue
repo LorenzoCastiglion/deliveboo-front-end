@@ -8,7 +8,7 @@
             <TextAnimation></TextAnimation>
         </div>
 
-        <section class="d-flex flex-column justify-content-center align-items-center">
+        <section class="d-flex flex-column justify-content-center align-items-center col-12">
             <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i> cerca per tipologia</button>
             <div v-if="showTypes">
                 <label for="types"></label>
