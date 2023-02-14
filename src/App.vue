@@ -9,7 +9,7 @@
   
   
 </main>
-<footer>
+<footer >
   <AppFooter></AppFooter>
 </footer>
  
@@ -39,9 +39,7 @@ import AppFooter from './components/AppFooter.vue';
 <style lang="scss" scoped>
 @use './assets/styles/partials/variables' as *;
 
-main{
-  height: 100vh;
-}
+
 
 
 </style>
