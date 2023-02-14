@@ -6,6 +6,7 @@
     <router-view></router-view>
 </main>
 
+
 <!-- carrello -->
   <div class="side_menu_shop">
     <i class="fa-solid fa-cart-shopping" @click="store.openCart = true"></i>
@@ -19,8 +20,6 @@
     <CartComponent v-if="store.openCart" />
   </Transition>
 
-
-  
 <footer>
   <AppFooter></AppFooter>
 </footer>
@@ -61,6 +60,7 @@ import CartComponent from './components/CartComponent.vue';
 
 <style lang="scss" scoped>
 @use './assets/styles/partials/variables' as *;
+
 
 
 
@@ -118,6 +118,7 @@ import CartComponent from './components/CartComponent.vue';
     padding-right: 1.5rem;
   }
 }
+
 
 
 </style>
