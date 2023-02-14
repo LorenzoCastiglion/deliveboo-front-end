@@ -43,7 +43,15 @@ import CartComponent from './components/CartComponent.vue';
   data(){
     return {
       index:0,
-      store
+      store,
+      openCart: false,
+      cart: []
+    }
+  },
+  mounted(){
+    const cartItem = localStorage.getItem('cart')
+    if(cartItem){
+      this.store.cart = JSON.parse(cartItem)
     }
   }
 
