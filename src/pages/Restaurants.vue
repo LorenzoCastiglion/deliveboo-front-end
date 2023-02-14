@@ -8,29 +8,38 @@
             <TextAnimation></TextAnimation>
         </div>
 
-        <section class="d-flex flex-column justify-content-center align-items-center col-12">
+        <section class="d-flex flex-column  align-items-center col-12">
             <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i> cerca per tipologia</button>
             <div v-if="showTypes" class="">
-                <label for="types"></label>
-                <select name="types" id="types" v-model="selectedType" class="my-3 ">
+                <!-- <label for="types"></label> -->
+                <!-- <select name="types" id="types" v-model="selectedType" class="my-3 ">
                     <option v-for="tipo in types" :value="tipo.id">
                         {{ tipo.name }}
                     </option>
-                </select>
+                </select> -->
+
+                <div class="multi-check my-4 ps-5">
+                    <div class="" v-for="tipo in types">
+                        <input type="checkbox" id="types" name="types" :value="tipo.id" v-model="selectedType">
+                        <span>{{ tipo.name }}</span>
+                    </div>
+                </div>
                 <button v-if="!showRes" @click="filterRestaurants">Filtra ristoranti</button>
                 <button v-if="showRes" @click="filterRestaurants">Reset</button>
             </div>
+
+
             <div v-if="showRes">
-            <div v-if="filteredRestaurants.length">
-                <h2>Ristoranti appartenenti alla tipologia: {{ selectedType }}</h2>
-                <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
-                    {{ restaurant.name }}
+                <div v-if="filteredRestaurants.length">
+                    <h2>Ristoranti appartenenti alla tipologia: {{ selectedType }}</h2>
+                    <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
+                        {{ restaurant.name }}
+                    </div>
+                </div>
+                <div v-else>
+                    <p>al momento non ci sono ristornati per questa tipologia</p>
                 </div>
             </div>
-            <div v-else>
-                <p>al momento non ci sono ristornati per questa tipologia</p>
-            </div>
-        </div>
         </section>
 
 
@@ -39,7 +48,7 @@
 
 
 
-        
+
 
         <div v-if="!showRes" class="col-12 mt-4">
 
@@ -81,7 +90,7 @@ export default {
             restaurants: [],
             types: [],
             showTypes: false,
-            selectedType: null,
+            selectedType: [],
             showRes: false,
             filteredRestaurants: []
 
@@ -209,9 +218,9 @@ button {
 
 }
 
-select {
-    border-radius: 8px;
-
-    margin: auto;
+.multi-check {
+    padding: 20px 0;
+    height: 100px;
+    overflow: scroll;
 }
 </style>

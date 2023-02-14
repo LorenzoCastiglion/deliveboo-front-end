@@ -2,7 +2,7 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" >
+            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay="2000"  :transition="1000">
                 <Slide v-for="slide in restaurants" :key="slide">
 
 
