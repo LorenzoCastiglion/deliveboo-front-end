@@ -10,9 +10,9 @@
 
         <section class="d-flex flex-column justify-content-center align-items-center col-12">
             <button @click="showAllTypes"> <i class="fa-solid fa-magnifying-glass"></i> cerca per tipologia</button>
-            <div v-if="showTypes">
+            <div v-if="showTypes" class="">
                 <label for="types"></label>
-                <select name="types" id="types" v-model="selectedType" class="my-3">
+                <select name="types" id="types" v-model="selectedType" class="my-3 ">
                     <option v-for="tipo in types" :value="tipo.id">
                         {{ tipo.name }}
                     </option>
@@ -149,7 +149,7 @@ export default {
 
 .restaurants-container {
     position: relative;
-
+    height: 100vh;
     overflow-x: hidden;
 
 

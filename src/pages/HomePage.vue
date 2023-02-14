@@ -99,10 +99,10 @@
                 <div class="col-sm-12  justify-content-center ">
                     <h2 class="text-area-long"> 
                         Code_eat è una piattaforma di consegna rivoluzionaria che offre un modo semplice e conveniente
-                        per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. Con Code_eat, puoi
+                        per ricevere gli articoli di cui hai bisogno in modo rapido e sicuro. <br> Con Code_eat, puoi
                         scegliere tra una varietà di servizi e tariffe
                         Comprendiamo che non hai sempre il tempo di uscire e acquistare ciò di cui hai bisogno, motivo
-                        per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita.
+                        per cui offriamo una varietà di opzioni di consegna adatte al tuo stile di vita. <br>
                         Inoltre, non sarai mai lasciato ad aspettare sulla soglia di casa; i nostri partner di consegna
                         porteranno i tuoi articoli direttamente a casa tua.
                         Quindi, perché aspettare?
@@ -414,7 +414,7 @@ background: linear-gradient( $red 0%, $acqua 40%, $yellow 100%);
 }
 
 .text-area-long {
-    text-align: center;
+    // text-align: center;
     letter-spacing: 2px;
     vertical-align: middle;
     padding-top: 5%;
