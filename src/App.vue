@@ -12,7 +12,7 @@
     <i class="fa-solid fa-cart-shopping" @click="store.openCart = true"></i>
     <Transition class="cart_animation">
       <div class="cart_counter" v-if="store.cart.length > 0">
-        <span>{{ store.cart.length }}</span>
+        <span>{{ cartTotalQuantity }}</span>
       </div>
     </Transition>
   </div>
@@ -45,6 +45,18 @@ import CartComponent from './components/CartComponent.vue';
       store,
       openCart: false,
       cart: []
+    }
+  },
+  computed: {
+      cartTotalQuantity () {
+          if (!store.cart) {
+          store.cart = [];
+      }
+      let total = 0
+      for (let i = 0; i < store.cart.length; i++) {
+          total += store.cart[i].quantity
+      }
+      return total
     }
   },
   mounted(){
