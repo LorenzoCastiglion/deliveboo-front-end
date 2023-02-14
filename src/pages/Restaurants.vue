@@ -1,5 +1,5 @@
 <template>
-    <section class="restaurants-container d-flex justify-content-center align-items-center flex-wrap pt-5">
+    <section class="restaurants-container d-flex justify-content-center align-items-center align-content-start flex-wrap pt-5">
         <div class="position-absolute blobtainer col-12 ">
             <div class="blob "></div>
         </div>
@@ -18,14 +18,16 @@
                     </option>
                 </select> -->
 
-                <div class="multi-check my-4 ps-5">
+                <div class="multi-check my-4  px-3">
                     <div class="" v-for="tipo in types">
                         <input type="checkbox" id="types" name="types" :value="tipo.id" v-model="selectedType">
                         <span>{{ tipo.name }}</span>
                     </div>
                 </div>
                 <button v-if="!showRes" @click="filterRestaurants">Filtra ristoranti</button>
-                <button v-if="showRes" @click="filterRestaurants">Reset</button>
+                <button v-if="showRes" @click="resetFilter">Reset</button>
+                
+                
             </div>
 
 
@@ -101,6 +103,15 @@ export default {
 
     methods: {
 
+
+        resetFilter(){
+            this.showRes = !this.showRes;
+            this.selectedType = [];
+            this.filteredRestaurants = [];
+            
+        },
+
+        
 
         getRestautants() {
             axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
@@ -219,7 +230,9 @@ button {
 }
 
 .multi-check {
-    padding: 20px 0;
+    border-radius: 8px;
+    border: 3px solid $yellow;
+   width: 250px;
     height: 100px;
     overflow: scroll;
 }
