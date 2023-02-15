@@ -9,9 +9,9 @@
 import { ref, onMounted } from 'vue'
 
 export default {
-    name: 'TeamAnimationAbout',
+    name: 'TeamAnimationComments',
     setup() {
-        const phrase = ref("Chi Siamo?")
+        const phrase = ref("Ecco cosa dicono su di noi")
         const targetEl = ref(null)
         const hoverChars = ref(null)
 
@@ -71,12 +71,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 400px;
+    height: 100px;
 }
 
 h3 {
     
-    font-size: 200px;
+    font-size: 20px;
     color:$black;
     font-weight: bold;
     cursor: default;

@@ -2,7 +2,7 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay="2000"  :transition="1000">
+            <Carousel class=" cards" :settings="settings"  :breakpoints="breakpoints" :wrap-around="true" :autoplay="2000"  :transition="1000">
                 <Slide v-for="(slide,item) in slide " key="item">
 
 
@@ -43,6 +43,20 @@ export default {
     name: 'CarouselAboutTeam',
     data() {
         return {
+
+            settings: {
+				itemsToShow: 1,
+				snapAlign: "center"
+			},
+
+            breakpoints: {
+				// 700px and up
+				800: {
+					itemsToShow: 2,
+					snapAlign: "center",
+				}
+            },
+
             store,
             slide:[
                 {
@@ -74,6 +88,8 @@ export default {
                 git:"https://github.com/MicheleBenaco",
                 },
             ]
+
+                
 
         }
     },
@@ -148,8 +164,8 @@ export default {
 
 .img {
     overflow: hidden;
-    width: 10rem;
-    height: 10rem;
+    width: 13rem;
+    height: 13rem;
     background: white;
     border-radius: 15px;
     margin: auto;
@@ -214,7 +230,7 @@ button {
 }
 
 .cont-h{
-    height: 100px;
+    height: 150px;
 }
 
 
