@@ -30,7 +30,8 @@ const router = createRouter({
         {
             path: '/restaurants/:slug',
             name: 'restaurant',
-            component: Restaurant
+            component: Restaurant,
+            props: true
         },
         {
             path: '/restaurant/:slug',

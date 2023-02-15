@@ -127,8 +127,7 @@
 <script>
 import { store } from '../store';
 import axios from "axios";
-import CreditCard from '../components/CreditCard.vue';
-import { defineComponent } from 'vue';
+
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 
 
@@ -326,9 +325,6 @@ h3 span::before {
 
 }
 
-
-
- 
 
 .blob3 {
 

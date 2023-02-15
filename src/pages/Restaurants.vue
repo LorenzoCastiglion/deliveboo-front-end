@@ -25,24 +25,26 @@
                         <span> &nbsp; {{ tipo.name }}</span>
                     </div>
                 </div>
-                <button v-if="!showRes" @click="filterRestaurants">Filtra ristoranti</button>
+                <button v-if="!showRes" @click="switcher">Filtra ristoranti</button>
                 <button v-if="showRes" @click="resetFilter">Reset</button>
             </div>
 
 
-            
+
 
             <div v-if="showRes">
-                <div v-if="filteredRestaurants.length" class="d-flex flex-wrap container justify-content-center my-3 filtered">
-                    <FilteredRestaurant class="col-sm-12 col-md-8 col-lg-4" v-for="item in filteredRestaurants" :card="item"></FilteredRestaurant>
-                  
+                <div v-if="filteredRestaurants.length"
+                    class="d-flex flex-wrap container justify-content-center my-3 filtered">
+                    <FilteredRestaurant class="col-sm-12 col-md-8 col-lg-4" v-for="item in filteredRestaurants"
+                        :card="item"></FilteredRestaurant>
+
                 </div>
                 <div v-else>
                     <p>al momento non ci sono ristoranti per questa tipologia</p>
                 </div>
             </div>
 
-   
+
 
         </section>
 
@@ -79,92 +81,89 @@ import CarouselRestaurants from '../components/CarouselRestaurants.vue';
 import FilteredRestaurant from '../components/FilteredRestaurant.vue';
 import axios from 'axios';
 import { store } from '../store';
+
 export default {
-    name: 'Restaurants',
+  name: 'Restaurants',
 
-    components: {
-        TextAnimation,
-        CarouselRestaurants,
-        FilteredRestaurant
+  components: {
+    TextAnimation,
+    CarouselRestaurants,
+    FilteredRestaurant
+  },
 
-    },
-
-    data() {
-        return {
-
-            store,
-            restaurants: [],
-            types: [],
-            showTypes: false,
-            selectedType: [],
-            showRes: false,
-            filteredRestaurants: []
-
-        }
-    },
-
-
-
-    methods: {
-
-        resetFilter() {
-            this.showRes = false;
-            this.selectedType = [];
-            this.filteredRestaurants = [];
-
-        },
-
-
-        getRestautants() {
-            axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
-
-                // console.log(response.data.results)
-                this.restaurants = response.data.results
-            })
-
-        },
-
-        getPlate() {
-            axios.get(`${this.store.apiBaseUrl}/plates`).then((response) => {
-
-                console.log(response.data.results)
-                this.plates = response.data.results
-            })
-        },
-        showAllTypes() {
-            this.showTypes = !this.showTypes;
-        },
-        filterRestaurants() {
-            const data = {
-                params: {
-                    type_id: this.selectedType,
-                }
-            };
-            axios.get("http://127.0.0.1:8000/api/filter", data).then((response) => {
-                console.log(response.data.results);
-                this.filteredRestaurants = response.data.results;
-                console.log(this.filteredRestaurants);
-            });
-
-            this.showRes = !this.showRes;
-        }
-
-    },
-
-    mounted() {
-        this.getRestautants()
-        this.getPlate()
-        axios.get("http://127.0.0.1:8000/api/types").then((response) => {
-            console.log(response.data.results);
-            this.types = response.data.results;
-        });
+  data() {
+    return {
+      store,
+      restaurants: [],
+      types: [],
+      showTypes: false,
+      selectedType: [],
+      showRes: false,
+      filteredRestaurants: []
     }
+  },
+
+  watch: {
+    $route(to) {
+    if (Array.isArray(to.query.types)) {
+      this.selectedType = to.query.types;
+    } else {
+      this.selectedType = [to.query.types];
+    }
+    this.filterRestaurants();
+  }
+  },
+
+  methods: {
+    resetFilter() {
+      this.showRes = false;
+      this.selectedType = [];
+      this.filteredRestaurants = [];
+      this.$router.replace({ name: 'restaurants' });
+    },
+
+    getRestaurants() {
+      axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
+        this.restaurants = response.data.results
+      })
+    },
+
+    showAllTypes() {
+      this.showTypes = !this.showTypes;
+    },
+
+    switcher(){
+        this.filterRestaurants();
+        this.showRes = true;
+        console.log(this.showRes)
+    },
+
+    filterRestaurants() {
+      const data = { params: { type_id: this.selectedType } };
+      axios.get("http://127.0.0.1:8000/api/filter", data).then((response) => {
+        this.filteredRestaurants = response.data.results;
+      });
+      this.$router.push({ query: { types: this.selectedType } });
+      console.log(this.showRes)
+    }
+  },
+
+  mounted() {
+    this.getRestaurants();
+    axios.get("http://127.0.0.1:8000/api/types").then((response) => {
+      console.log(response.data.results);
+      this.types = response.data.results;
+    });
+    const types = this.$route.query.types;
+if (types && types.length) {
+  this.selectedType = Array.isArray(types) ? types.join(",") : [types];
+  this.filterRestaurants();
+  console.log(this.filterRestaurants());
 }
-
-
-
-
+  }
+}
 </script>
+
 
 <style lang="scss" scoped>
 @use './../assets/styles/partials/variables' as *;

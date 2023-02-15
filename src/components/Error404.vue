@@ -8,7 +8,7 @@
             <p>Ops! Sembra che tu abbia sbagliato strada. Qui non c'è nulla da vedere, a parte questo simpatico pasticciere che a
             quanto pare si è perso anche lui. Ma non temere, basta premere il pulsante magico qui sotto e tornerai alla giusta
             rotta!</p>
-            <button @click="goHome">Torna alla Home</button>
+            <button class="m-auto" @click="goHome">Torna alla Home</button>
         </div>
     </section>
 </template>
@@ -31,7 +31,13 @@ export default {
 };
 </script>
 
+
+
 <style lang="scss" scoped>
+@use './../assets/styles/partials/variables' as *;
+
+
+
 .container {
     position: relative;
     height: 100vh;
@@ -66,7 +72,7 @@ export default {
                                     }
                 
                                     66% {
-                                        border-radius: 100% 56% 56% 100% / 100% 100% 79% 79%;
+                                        border-radius: 20% 56% 56% 39% / 30% 90% 79% 79%;
                                     }
                 
                 
@@ -80,21 +86,38 @@ export default {
         text-align: center;
     
         p {
+            font-weight: 600;
             font-size: 16px;
             margin: 20px;
-            color: #fff;
+            color: $acqua;
         }
     
         button {
-            background: #2a435d;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    
+    padding: 0.5em 1.7em;
+    display: block;
+
+    border-radius: 25px;
+    border: none;
+
+    font-weight: bold;
+    background: $acqua;
+    color: $yellow;
+    transition: .4s ease-in-out;
+
+
+    &:hover {
+        background: $yellow;
+        color: $acqua;
+        text-decoration: none;
+        transform: translateY(-4px) translateX(-2px);
+        box-shadow: 2px 5px 0 0 black;
+    }
+
+    &:active {
+        transform: translateY(2px) translateX(1px);
+        box-shadow: 0 0 0 0 black;
+    }
+}
         img {
             max-width: 60%;
             height: auto;

@@ -274,9 +274,10 @@ export default {
 
 // Ristorante Dettagli
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 900;
     color: $acqua;
+    font-stretch: extra-condensed;
 }
 
 h4{
