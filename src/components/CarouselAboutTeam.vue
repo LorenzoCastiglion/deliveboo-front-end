@@ -150,16 +150,7 @@ export default {
     font-size: 1em;
 }
 
-.info {
-    font-weight: 400;
-    color: $black;
-   
-    
-    padding-top: 0.1em;
-    font-size: 0.72em;
-    margin: 1em;
-    margin-top: 1em;
-}
+
 
 
 .img {
@@ -180,34 +171,7 @@ a {
 }
 
 
-button {
-    padding: 0.5em 1.7em;
-    display: block;
-    margin: auto;
-    border-radius: 25px;
-    border: none;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    font-weight: bold;
-    background: $acqua;
-    color: rgb(0, 0, 0);
-    transition: .4s ease-in-out;
 
-
-    &:hover{
-        background: $yellow;
-    color:$red;
-    text-decoration: none;
-    transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
-    }
-
-    &:active{
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;}
-
-
-}
 
 }
 
