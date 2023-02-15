@@ -20,7 +20,7 @@
                     <div class="col-md-4">
                         
                         <div class="blob-img">
-                            <img class="w-100 h-100" :src="`${store.imagBasePath}${restaurant.image}`" alt="">
+                            <img class="w-100 h-100 bg-danger" :src="restaurant.image ? `${store.imagBasePath}${restaurant.image}`: '../../public/img/logo-01.png'" alt="">
                         </div>
                         
                         <!-- CARRELLO -->
