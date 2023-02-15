@@ -2,7 +2,7 @@
     <div class="bkg ">
         <div class="container">
 
-            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay="2000"  :transition="1000">
+            <Carousel class=" cards" :items-to-show="1" :wrap-around="true" :autoplay="2000" :transition="1000">
                 <Slide v-for="slide in restaurants" :key="slide">
 
 
@@ -10,7 +10,9 @@
 
                     <div class="carta">
                         <div class="img mb-2">
-                            <img class="w-100 h-100" :src="`${store.imagBasePath}${slide.image}`" alt="">
+                            <img class="w-100 h-100"
+                                :src="slide.image ? `${store.imagBasePath}${slide.image}` : '../../public/img/logo-01.png'"
+                                alt="">
                         </div>
                         <h3 class="w-50 m-auto">{{ slide.name }}</h3>
                         <p class="info w-50 m-auto">{{ truncate(slide.description, 120) }}</p>
@@ -84,10 +86,17 @@ export default {
 
         },
 
+
         truncate(str, n) {
-            return str.substring(0, n) + '...';
+            if (typeof str !== 'string') {
+                return '';
+            }
+            return (str.length > n) ? str.substring(0, n - 1) + '...' : str;
         }
 
+    },
+
+    computed: {
 
     },
 
@@ -120,84 +129,87 @@ export default {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    transition: 0.5s ease-in-out;;
-    
+    transition: 0.5s ease-in-out;
+    ;
+
     background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22753.595%22 height=%22644.116%22 viewBox=%22112.635 218.87 753.595 644.116%22%3E%3Cdefs%3E%3CradialGradient id=%22c%22 r=%22100%25%22 cx=%222%25%22 cy=%2280%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23FF0037%22%2F%3E%3Cstop offset=%2250%25%22 stop-color=%22%23F4F1BB%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%239BC1BC%22%2F%3E%3C%2FradialGradient%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.1 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22url(%23c)%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-    
-    &:hover{
+
+    &:hover {
         transform: scale(1.02);
-        .img{
+
+        .img {
             transform: translateY(-20px);
         }
     }
 
     span {
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    display: block;
-    padding-top: 1em;
-    font-size: 1em;
-}
-
-.info {
-    font-weight: 400;
-    color: $black;
-   
-    
-    padding-top: 0.1em;
-    font-size: 0.72em;
-    margin: 1em;
-    margin-top: 1em;
-}
-
-
-.img {
-    overflow: hidden;
-    width: 10rem;
-    height: 10rem;
-    background: white;
-    border-radius: 15px;
-    margin: auto;
-    margin-top: 1.7em;
-    transition: 0.5s ease-in-out;
-}
-
-
-a {
-    
-    text-decoration: none;
-}
-
-
-button {
-    padding: 0.5em 1.7em;
-    display: block;
-    margin: auto;
-    border-radius: 25px;
-    border: none;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    font-weight: bold;
-    background: $acqua;
-    color: rgb(0, 0, 0);
-    transition: .4s ease-in-out;
-
-
-    &:hover{
-        background: $yellow;
-    color:$red;
-    text-decoration: none;
-    transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 black;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        display: block;
+        padding-top: 1em;
+        font-size: 1em;
     }
 
-    &:active{
-  transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 black;}
+    .info {
+        font-weight: 400;
+        color: $black;
 
 
-}
+        padding-top: 0.1em;
+        font-size: 0.72em;
+        margin: 1em;
+        margin-top: 1em;
+    }
+
+
+    .img {
+        overflow: hidden;
+        width: 10rem;
+        height: 10rem;
+        background: white;
+        border-radius: 15px;
+        margin: auto;
+        margin-top: 1.7em;
+        transition: 0.5s ease-in-out;
+    }
+
+
+    a {
+
+        text-decoration: none;
+    }
+
+
+    button {
+        padding: 0.5em 1.7em;
+        display: block;
+        margin: auto;
+        border-radius: 25px;
+        border: none;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        font-weight: bold;
+        background: $acqua;
+        color: rgb(0, 0, 0);
+        transition: .4s ease-in-out;
+
+
+        &:hover {
+            background: $yellow;
+            color: $red;
+            text-decoration: none;
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 2px 5px 0 0 black;
+        }
+
+        &:active {
+            transform: translateY(2px) translateX(1px);
+            box-shadow: 0 0 0 0 black;
+        }
+
+
+    }
 
 }
 
@@ -212,13 +224,10 @@ button {
 
 
 .blob {
-    
+
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22753.595%22 height=%22644.116%22 viewBox=%22112.635 218.87 753.595 644.116%22%3E%3Cdefs%3E%3CradialGradient id=%22c%22 r=%22100%25%22 cx=%222%25%22 cy=%2280%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23FF0037%22%2F%3E%3Cstop offset=%2250%25%22 stop-color=%22%23F4F1BB%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%239BC1BC%22%2F%3E%3C%2FradialGradient%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.1 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22url(%23c)%22 d=%22M825.5 631Q762 762 631 824.5T345.5 848q-154.5-39-211-193.5t33-276q89.5-121.5 211-111T659 230q159-48 194.5 111t-28 290Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
-
-
-
 </style>

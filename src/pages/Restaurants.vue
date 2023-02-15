@@ -1,5 +1,6 @@
 <template>
-    <section class="restaurants-container d-flex justify-content-center align-items-center align-content-start flex-wrap pt-5">
+    <section
+        class="restaurants-container d-flex justify-content-center align-items-center align-content-start flex-wrap pt-5">
         <div class="position-absolute blobtainer col-12 ">
             <div class="blob "></div>
         </div>
@@ -18,30 +19,31 @@
                     </option>
                 </select> -->
 
-                <div class="multi-check my-4  px-3">
+                <div class="multi-check my-4 px-3">
                     <div class="" v-for="tipo in types">
                         <input type="checkbox" id="types" name="types" :value="tipo.id" v-model="selectedType">
-                        <span>{{ tipo.name }}</span>
+                        <span> &nbsp; {{ tipo.name }}</span>
                     </div>
                 </div>
                 <button v-if="!showRes" @click="filterRestaurants">Filtra ristoranti</button>
                 <button v-if="showRes" @click="resetFilter">Reset</button>
-                
-                
             </div>
 
+
+            
 
             <div v-if="showRes">
-                <div v-if="filteredRestaurants.length">
-                    <h2>Ristoranti appartenenti alla tipologia: {{ selectedType }}</h2>
-                    <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
-                        {{ restaurant.name }}
-                    </div>
+                <div v-if="filteredRestaurants.length" class="d-flex flex-wrap container justify-content-center my-3 filtered">
+                    <FilteredRestaurant class="col-sm-12 col-md-8 col-lg-4" v-for="item in filteredRestaurants" :card="item"></FilteredRestaurant>
+                  
                 </div>
                 <div v-else>
-                    <p>al momento non ci sono ristornati per questa tipologia</p>
+                    <p>al momento non ci sono ristoranti per questa tipologia</p>
                 </div>
             </div>
+
+   
+
         </section>
 
 
@@ -74,6 +76,7 @@
 <script>
 import TextAnimation from '../components/TextAnimation.vue';
 import CarouselRestaurants from '../components/CarouselRestaurants.vue';
+import FilteredRestaurant from '../components/FilteredRestaurant.vue';
 import axios from 'axios';
 import { store } from '../store';
 export default {
@@ -82,6 +85,7 @@ export default {
     components: {
         TextAnimation,
         CarouselRestaurants,
+        FilteredRestaurant
 
     },
 
@@ -103,15 +107,13 @@ export default {
 
     methods: {
 
-
-        resetFilter(){
-            this.showRes = !this.showRes;
+        resetFilter() {
+            this.showRes = false;
             this.selectedType = [];
             this.filteredRestaurants = [];
-            
+
         },
 
-        
 
         getRestautants() {
             axios.get(`${this.store.apiBaseUrl}/restaurants`).then((response) => {
@@ -230,9 +232,11 @@ button {
 }
 
 .multi-check {
+
     border-radius: 8px;
     border: 3px solid $yellow;
-   width: 250px;
+    width: 250px;
+    padding: 20px 0;
     height: 100px;
     overflow: scroll;
 }
