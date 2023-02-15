@@ -119,11 +119,11 @@ import CartComponent from './components/CartComponent.vue';
   flex-direction: column;
   row-gap: 0.5rem;
   padding: 0.8rem;
-  background-color: white;
+  background-color: $yellow;
   color: black;;
   font-size: 1.4rem;
   box-shadow: 0px 4px 8px -2px rgba(black, 0.35);
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 42% 40% 56% 56% / 42% 40% 56% 16%;
   transition: all 450ms ease;
   cursor: pointer;
   &:hover {
@@ -131,6 +131,8 @@ import CartComponent from './components/CartComponent.vue';
   }
 }
 
-
+i{
+  color: $acqua;
+}
 
 </style>

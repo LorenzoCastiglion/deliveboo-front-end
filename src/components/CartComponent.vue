@@ -13,7 +13,7 @@
             <div class="product_list mt-5 d-flex justify-content-around">
                 <ul class="mt-4">
                     <li v-for="(item, i) in store.cart" :key="i">
-                        <p> <span class="fw-bold fs-4">{{ item.name }}</span> x {{ item.quantity }}</p>
+                        <p> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span> x {{ item.quantity }}</p>
                     </li>
                 </ul>
                
@@ -42,12 +42,20 @@ export default {
         };
     },
     methods: {
+        truncate(str, n) {
+            if (typeof str !== 'string') {
+                return '';
+            }
+            return (str.length > n) ? str.substring(0, n - 1) + '...' : str;
+        },
+
         getPlates() {
             axios.get(`${this.store.apiBaseUrl}/plates/${this.$route.params.slug}`).then((response) => {
                 console.log(response.data.results)
                 this.plates = response.data.results;
             })
         },
+        
         clearCart() {
             store.cart = [];
             localStorage.removeItem("cart");
@@ -72,8 +80,9 @@ export default {
         const storedCart = localStorage.getItem('cart');
         if (storedCart) {
             store.cart = JSON.parse(storedCart);
+            
         }
-
+        console.log(localStorage)
         this.getPlates();
     }
 };
