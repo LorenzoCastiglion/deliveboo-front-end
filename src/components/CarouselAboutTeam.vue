@@ -61,30 +61,30 @@ export default {
             slide:[
                 {
                 name: 'Salvatore Colopi',
-                image :'',
+                image :'../../public/img/salvo.jpeg',
                 git:"https://github.com/colopisalvatore",
                 },
 
                 {
                 name: 'Lorenzo Castiglion',
-                image :'',
+                image :'../../public/img/lore.png',
                 git:"https://github.com/LorenzoCastiglion",
                 },
 
                 {
                 name: 'Valentina Zussino',
-                image :'',
+                image :'../../public/img/vale2.jpg',
                 git:"https://github.com/ValentinaZussino",
                 },
 
                 {
                 name: 'Luis Miguel Gonzalez Castellanos',
-                image :'',
+                image :'../../public/img/luis.png',
                 git:"https://github.com/LuisGonzalez27",
                 },
                 {
                 name: 'Michele Benaco',
-                image :'',
+                image :'../../public/img/mike.jpg',
                 git:"https://github.com/MicheleBenaco",
                 },
             ]
