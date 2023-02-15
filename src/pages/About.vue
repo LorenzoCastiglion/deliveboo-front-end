@@ -310,6 +310,8 @@ a{
     padding: 20px;
     margin: 15px;
     cursor: pointer;
+    box-shadow: 8px 13px 19px 0px #000000;
+
 }
 .profile-img{
     width:50px;
