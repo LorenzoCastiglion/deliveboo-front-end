@@ -156,7 +156,7 @@ export const store = reactive({
                 },
                 {
                     pagename: 'Diventa nostro partner',
-                    url:"#"
+                    url:"http://127.0.0.1:8000"
                 },
                 {
                     pagename: 'Lavora con noi',
