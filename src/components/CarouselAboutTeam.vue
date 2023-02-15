@@ -1,8 +1,8 @@
 <template >
     <div class="bkg ">
-        <div class="container">
+        <div class="">
 
-            <Carousel class=" cards" :settings="settings"  :breakpoints="breakpoints" :wrap-around="true" :autoplay="2000"  :transition="1000">
+            <Carousel class=" w-100 cards" :settings="settings"  :breakpoints="breakpoints" :wrap-around="true" :autoplay="2000"  :transition="1000">
                 <Slide v-for="(slide,item) in slide " key="item">
 
 
@@ -52,7 +52,7 @@ export default {
             breakpoints: {
 				// 700px and up
 				800: {
-					itemsToShow: 2,
+					itemsToShow: 2.5,
 					snapAlign: "center",
 				}
             },
@@ -211,6 +211,9 @@ button {
 
 }
 
+.bkg{
+    width: 100vw;
+}
 
 .carousel__slide--next {
     opacity: 0.5;

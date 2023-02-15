@@ -1,5 +1,5 @@
 <template>
-    <section class="about-container d-flex justify-content-center align-items-center flex-wrap pt-5">
+    <section class=" d-flex justify-content-center align-items-center flex-wrap pt-5">
         <div class="position-absolute blobtainer col-12 ">
             <div class="blob "></div>
         </div>
@@ -15,13 +15,13 @@
             </h3>
 
             <h3 class="pt-2 pb-2">
-                I membri del team possono  progettare l'interfaccia utente e la grafica, <strong> sviluppare codici</strong> HTML, CSS e JavaScript per progettare front-end, scrivere codice back-end in linguaggi come PHP, 
+                I membri del team possono  progettare l'interfaccia utente e la grafica, <strong> sviluppare codici</strong> HTML, CSS e JavaScript per progettare <strong>front-end, scrivere codice back-end</strong> in linguaggi come PHP, 
                <strong> impostare database</strong>, integrare API e creare strumenti di amministrazione.
             </h3>
 
             <h3 class="pb-5">
                 Il nostro team di sviluppatori web è riuscito a rendere <strong>il sito Web moderno, responsive e sicuro</strong>. 
-                Utilizzando le tecnologie più recenti, come l'utilizzo di framework come Bootstrap, Vue.
+                Utilizzando le tecnologie più recenti, come <strong>l'utilizzo di framework</strong> come Bootstrap, Vue.
             </h3>
 
 
@@ -29,7 +29,7 @@
         <!--FINE SCRITTA CENTRALE --> 
 
         <!-- CAROUSEL  :) -->
-            <div class=" container pt-5 pb-5"> 
+            <div class="pt-5 pb-5"> 
                 <CarouselAboutTeam></CarouselAboutTeam>
             </div>
          <!--FINE CAROUSEL  -->
@@ -41,7 +41,10 @@
         <div class="testimonial-heading">
             <span>Commenti</span>
             <!-- <h1>Clients Says</h1> -->
-            <TextAnimationComments></TextAnimationComments>
+            <div class="text-animation">
+                <TextAnimationComments></TextAnimationComments>
+            </div>
+            
 
 
         </div>
@@ -74,7 +77,7 @@
                 </div>
                 <!--Comments---------------------------------------->
                 <div class="client-comment">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur voluptates incidunt blanditiis sed atque cumque.</p>
+                    <p>Ho usato Code_Eat per la prima volta questa settimana ed è stata un'esperienza molto piacevole. Il servizio è stato veloce, efficiente e senza problemi. Il fattorino è arrivato in tempo e mi ha portato l'ordine esattamente come richiesto. Il personale era gentile e disponibile, anche se l'interazione è stata molto breve.</p>
                 </div>
             </div>
             <!--BOX-2-------------->
@@ -104,7 +107,7 @@
                 </div>
                 <!--Comments---------------------------------------->
                 <div class="client-comment">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur voluptates incidunt blanditiis sed atque cumque.</p>
+                    <p>I prezzi erano piuttosto ragionevoli e competitivi rispetto ad altri servizi di consegna simili. Il sito web è molto facile da usare e ho potuto trovare tutti i prodotti che cercavo in pochi minuti. Il processo di pagamento era anche abbastanza semplice e non ho avuto alcun problema con il mio metodo di pagamento preferito.</p>
                 </div>
             </div>
             <!--BOX-3-------------->
@@ -134,7 +137,7 @@
                 </div>
                 <!--Comments---------------------------------------->
                 <div class="client-comment">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur voluptates incidunt blanditiis sed atque cumque.</p>
+                    <p>Recentemente ho avuto occasione di servirmi del servizio di consegna di Code_eat e, devo ammettere, sono rimasta piacevolmente colpita dall'efficienza e dalla precisione della consegna. Ho ordinato una pizza e l'ho ricevuta nei tempi specificati. Anche il prezzo è stato abbastanza accessibile..</p>
                 </div>
             </div>
             <!--BOX-4-------------->
@@ -164,7 +167,7 @@
                 </div>
                 <!--Comments---------------------------------------->
                 <div class="client-comment">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur voluptates incidunt blanditiis sed atque cumque.</p>
+                    <p> Consiglio vivamente Code_eat a chiunque cercasse un servizio di consegna affidabile ed efficiente. Il servizio è veloce, conveniente e offre una buona esperienza utente. Non avrei potuto chiedere di meglio.</p>
                 </div>
             </div>
         </div>

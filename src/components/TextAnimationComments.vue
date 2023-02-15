@@ -76,7 +76,7 @@ body {
 
 h3 {
     
-    font-size: 20px;
+    font-size: 60px;
     color:$black;
     font-weight: bold;
     cursor: default;
