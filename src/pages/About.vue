@@ -15,7 +15,7 @@
             </h3>
 
             <h3 class="pt-2 pb-2">
-                I membri del team possono  progettare l'interfaccia utente e la grafica, <strong> sviluppare codici</strong> HTML, CSS e JavaScript per progettare <strong>front-end, scrivere codice back-end</strong> in linguaggi come PHP, 
+                <strong>I membri del team</strong> possono  progettare l'interfaccia utente e la grafica, <strong> sviluppare codici</strong> HTML, CSS e JavaScript per progettare <strong>front-end, scrivere codice back-end</strong> in linguaggi come PHP, 
                <strong> impostare database</strong>, integrare API e creare strumenti di amministrazione.
             </h3>
 
