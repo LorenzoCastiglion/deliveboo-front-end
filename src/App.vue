@@ -8,8 +8,8 @@
 
 
 <!-- carrello -->
-  <div class="side_menu_shop">
-    <i class="fa-solid fa-cart-shopping" @click="store.openCart = true"></i>
+  <div class="side_menu_shop" @click="store.openCart = true">
+    <i class="fa-solid fa-cart-shopping" ></i>
     <Transition class="cart_animation">
       <div class="cart_counter" v-if="store.cart.length > 0">
         <span>{{ cartTotalQuantity }}</span>
