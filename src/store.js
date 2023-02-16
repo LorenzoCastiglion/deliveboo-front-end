@@ -187,4 +187,5 @@ export const store = reactive({
 
          
     ],
+    total_amount: '',
 })

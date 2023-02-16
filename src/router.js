@@ -6,6 +6,7 @@ import About from './pages/About.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Plate from './pages/Plate.vue';
 import Checkout from './pages/Checkout.vue';
+import Success from './pages/Success.vue';
 
 
 
@@ -51,7 +52,11 @@ const router = createRouter({
             component: () => import('../src/components/Error404.vue')
         },
 
-
+        {
+            path: '/success',
+            name: 'success',
+            component: Success
+        },
 
        
     ]
