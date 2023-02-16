@@ -79,7 +79,7 @@
                                         <FadeIntoView>
 
                                             <div>
-                                            <p class="fw-semibold">{{ plate.name }}</p>
+                                            <p class="fw-semibold">{{ plate.name }} <span v-if="plate.inCart"><i class="fa-solid fa-check"></i></span> </p>
                                             <p>{{ plate.price }} &#8364;</p>
 
                                             <p v-if="(plate.allergens)">Allergeni: {{ plate.allergens }} </p>
@@ -90,7 +90,7 @@
                                                 @click="addToCart(plate)"></button>
                                             <button class="my-button fa-solid fa-minus "
                                                 @click="removeFromCart(plate)"></button>
-                                            <!-- <p>quantità: {{ plate.quantity }}</p> -->
+                                            <p>quantità: {{ getQuantityInCart(plate) }}</p>
                                         </div>
                                        
                                     </FadeIntoView>
@@ -124,7 +124,8 @@
 <script>
 import FadeIntoView from '../components/FadeIntoView.vue';
 import axios from 'axios';
-import { store } from '../store'
+import { store } from '../store';
+
 export default {
     name: 'Restaurant',
 
@@ -218,6 +219,7 @@ export default {
                     }
                 }
                 plate.quantity = 1;
+                plate.inCart = true;
                 store.cart.push(plate);
             }
             localStorage.setItem("cart", JSON.stringify(store.cart));
@@ -232,12 +234,13 @@ export default {
                         store.cart[i].quantity--;
                         if (store.cart[i].quantity === 0) {
                             store.cart.splice(i, 1);
+                            plate.inCart = false;
                         }
                         break;
                     }
                 }
                 localStorage.setItem("cart", JSON.stringify(store.cart));
-                console.log("Plate rimosso dal carrello");
+                console.log("Piatto rimosso dal carrello");
             }
             console.log(store.cart);
         },
@@ -247,7 +250,14 @@ export default {
             console.log(store.cart);
             console.log("Carrello svuotato");
         },
-
+        getQuantityInCart(plate) {
+            const itemIndex = store.cart.findIndex(item => item.id === plate.id);
+            if (itemIndex === -1) {
+                return 0;
+            } else {
+                return store.cart[itemIndex].quantity;
+            }
+        },
     },
 
     mounted() {
