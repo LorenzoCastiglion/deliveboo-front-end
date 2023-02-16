@@ -199,14 +199,14 @@ button {
     border: none;
 
     font-weight: bold;
-    background: $yellow;
-    color: $red;
+    background: $acqua;
+    color: $yellow;
     transition: .4s ease-in-out;
 
 
     &:hover {
         background: $yellow;
-        color: $acqua;
+        color: $red;
         text-decoration: none;
         transform: translateY(-4px) translateX(-2px);
         box-shadow: 2px 5px 0 0 black;

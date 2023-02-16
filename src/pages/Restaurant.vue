@@ -1,7 +1,16 @@
 <template>
     <section v-if="restaurant">
+
+
         <div class="container pt-5">
 
+
+            <div v-if="showModal" class="modal">
+                <div class="blob"></div>
+                <p>Vuoi svuotare il carrello e ordinare da questo ristorante?</p>
+                <button class="mod-button" @click="addNewPlate()">Sì</button>
+                <button class="mod-button" @click="hideModal">No</button>
+            </div>
 
             <div class="d-flex justify-content-around gap-2 flex-wrap">
                 <div class="">
@@ -63,12 +72,12 @@
 
 
                     <!-- MENU PIATTI -->
-                    <div class="">
+                    <div class="mt-5">
                         <h4>Scegli i tuoi piatti</h4>
                         <div class="container pt-2 pb-4">
                             <div class="row g-3 justify-content-around">
-                                <div class="col-md-5 col-sm-12 border rounded-5 " v-for="(plate, index) in restaurant.plates"
-                                    :key="index">
+                                <div class="col-md-5 col-sm-12 border rounded-5 "
+                                    v-for="(plate, index) in restaurant.plates" :key="index">
                                     <div class="card-body d-flex ">
                                         <div class="me-3">
                                             <img :src="plate.image ? `${store.imagBasePath}${plate.image}` : '../../public/img/boolean.png'"
@@ -79,22 +88,22 @@
                                         <FadeIntoView>
 
                                             <div>
-                                            <p class="fw-semibold">{{ plate.name }} <span v-if="plate.inCart"><i class="fa-solid fa-check"></i></span> </p>
-                                            <p>{{ plate.price }} &#8364;</p>
+                                                <p class="fw-semibold">{{ plate.name }}</p>
+                                                <p>{{ plate.price }} &#8364;</p>
 
-                                            <p v-if="(plate.allergens)">Allergeni: {{ plate.allergens }} </p>
-                                            <p v-else="( plate.allergens )"> Non ci sono allergeni</p>
+                                                <p v-if="(plate.allergens)">Allergeni: {{ plate.allergens }} </p>
+                                                <p v-else="( plate.allergens )"> Non ci sono allergeni</p>
 
-                                            <!-- <p>{{ plate.available == 1 ? 'Sì è disponibile' : 'No disponibile' }}</p> -->
-                                            <button class="my-button fa-solid fa-plus me-3"
-                                                @click="addToCart(plate)"></button>
-                                            <button class="my-button fa-solid fa-minus "
-                                                @click="removeFromCart(plate)"></button>
-                                            <p>quantità: {{ getQuantityInCart(plate) }}</p>
-                                        </div>
-                                       
-                                    </FadeIntoView>
-                                        
+                                                <!-- <p>{{ plate.available == 1 ? 'Sì è disponibile' : 'No disponibile' }}</p> -->
+                                                <button class="my-button fa-solid fa-plus me-3"
+                                                    @click="addToCart(plate)"></button>
+                                                <button class="my-button fa-solid fa-minus me-3"
+                                                    @click="removeFromCart(plate)"></button>
+                                                <!-- <p>quantità: {{ plate.quantity }}</p> -->
+                                            </div>
+
+                                        </FadeIntoView>
+
 
 
                                     </div>
@@ -122,14 +131,14 @@
 </template>
 
 <script>
+
 import FadeIntoView from '../components/FadeIntoView.vue';
 import axios from 'axios';
-import { store } from '../store';
-
+import { store } from '../store'
 export default {
     name: 'Restaurant',
 
-    components:{
+    components: {
 
         FadeIntoView
     },
@@ -139,7 +148,8 @@ export default {
 
             store,
             restaurant: null,
-            imagBasePath: ''
+            imagBasePath: '',
+            showModal: false
 
         }
     },
@@ -195,6 +205,38 @@ export default {
             return (this.getRestaurant,
                 this.getPlates)
         },
+        // addToCart(plate) {
+        //     // if (!store.cart) {
+        //     //     store.cart = [];
+        //     // }
+        //     let plateInCart = false;
+        //     for (let i = 0; i < store.cart.length; i++) {
+        //         if (store.cart[i].slug === plate.slug) {
+        //             store.cart[i].quantity++;
+        //             plateInCart = true;
+        //             break;
+        //         }
+        //     }
+        //     if (!plateInCart) {
+        //         for (let i = 0; i < store.cart.length; i++) {
+        //             if (plate.restaurant_id !== store.cart[i].restaurant_id) {
+        //                 if (confirm('Vuoi svuotare il carrello e ordinare dal nuovo ristorante?')) {
+        //                     store.cart = [];
+        //                     console.log('non corrispondono');
+        //                 } else {
+        //                     return;
+        //                 }
+        //             }
+        //         }
+        //         plate.quantity = 1;
+        //         store.cart.push(plate);
+        //     }
+        //     localStorage.setItem("cart", JSON.stringify(store.cart));
+        //     console.log("Piatto aggiunto al carrello");
+        //     console.log(store.cart);
+        // },
+
+
         addToCart(plate) {
             // if (!store.cart) {
             //     store.cart = [];
@@ -210,21 +252,41 @@ export default {
             if (!plateInCart) {
                 for (let i = 0; i < store.cart.length; i++) {
                     if (plate.restaurant_id !== store.cart[i].restaurant_id) {
-                        if (confirm('Vuoi svuotare il carrello e ordinare dal nuovo ristorante?')) {
-                            store.cart = [];
-                            console.log('non corrispondono');
-                        } else {
-                            return;
-                        }
+                        store.newFood = plate
+                        this.showModal = true
+
+
+
+                    } else {
+
                     }
                 }
                 plate.quantity = 1;
-                plate.inCart = true;
                 store.cart.push(plate);
             }
             localStorage.setItem("cart", JSON.stringify(store.cart));
             console.log("Piatto aggiunto al carrello");
             console.log(store.cart);
+        },
+
+
+        addNewPlate() {
+            const plate = store.newFood;
+            console.log(plate);
+            store.cart = [];
+            plate.quantity = 1;
+            this.store.cart.push(plate);
+            localStorage.setItem('cart', JSON.stringify(store.cart));
+            this.hideModal();
+
+
+        },
+
+
+
+
+        hideModal() {
+            this.showModal = false;
         },
 
         removeFromCart(plate) {
@@ -234,13 +296,12 @@ export default {
                         store.cart[i].quantity--;
                         if (store.cart[i].quantity === 0) {
                             store.cart.splice(i, 1);
-                            plate.inCart = false;
                         }
                         break;
                     }
                 }
                 localStorage.setItem("cart", JSON.stringify(store.cart));
-                console.log("Piatto rimosso dal carrello");
+                console.log("Plate rimosso dal carrello");
             }
             console.log(store.cart);
         },
@@ -250,14 +311,7 @@ export default {
             console.log(store.cart);
             console.log("Carrello svuotato");
         },
-        getQuantityInCart(plate) {
-            const itemIndex = store.cart.findIndex(item => item.id === plate.id);
-            if (itemIndex === -1) {
-                return 0;
-            } else {
-                return store.cart[itemIndex].quantity;
-            }
-        },
+
     },
 
     mounted() {
@@ -271,16 +325,121 @@ export default {
             this.getPlates, 1500
         )
 
-
-
     }
-
 
 }
 </script>
 
 <style lang="scss" scoped>
 @use './../assets/styles/partials/variables' as *;
+
+
+
+// Modale
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        color: $red;
+        text-align: center;
+        ;
+        width: 500px;
+        font-size: 30px;
+        font-weight: 900;
+        margin-bottom: 16px;
+    }
+
+    .mod-button {
+        padding: 0.5em 1.7em;
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 25px;
+        border: none;
+        width: 100px;
+        font-weight: bold;
+        background: $yellow;
+        color: $red;
+        transition: .4s ease-in-out;
+
+
+        &:hover {
+            background: $red;
+            color: $yellow;
+            text-decoration: none;
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 2px 5px 0 0 black;
+        }
+
+        &:active {
+            transform: translateY(2px) translateX(1px);
+            box-shadow: 0 0 0 0 black;
+        }
+
+    }
+
+    .blob {
+
+
+        position: absolute;
+        ;
+        background-color: $acqua;
+        width: 40%;
+        height: 40%;
+        z-index: -1;
+        border-radius: 42% 56% 72% 28% / 42% 42% 56% 44%;
+        animation: blab 10s linear infinite;
+
+        @keyframes blab {
+
+            0%,
+            100% {
+                border-radius: 42% 56% 72% 28% / 42% 42% 56% 44%;
+            }
+
+            20% {
+                border-radius: 52% 46% 42% 38% / 32% 42% 66% 44%;
+            }
+
+            40% {
+                border-radius: 42% 56% 62% 48% / 22% 42% 56% 54%;
+            }
+
+            60% {
+                border-radius: 32% 60% 72% 28% / 42% 52% 46% 64%;
+            }
+
+            80% {
+                border-radius: 22% 50% 60% 40% / 50% 30% 66% 54%;
+            }
+
+
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// fine modale
+
 
 // Ristorante Dettagli
 h1 {
@@ -290,10 +449,10 @@ h1 {
     font-stretch: extra-condensed;
 }
 
-h4{
+h4 {
     font-size: 2.5rem;
     font-weight: 900;
-    color: $red;  
+    color: $red;
 }
 
 i {
@@ -358,11 +517,11 @@ i {
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 12px;
-    transition: 0.5s ease-in-out;
+    transition: 0.1s ease-in-out;
 
-    &:hover{
-        transform: scale(1.2);
-        
+    &:hover {
+        transform: scale(1.1);
+
         color: $yellow;
     }
 }
