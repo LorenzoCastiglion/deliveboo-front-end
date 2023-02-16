@@ -12,12 +12,14 @@
             <!-- lista piatti -->
             <div class="product_list mt-5 d-flex justify-content-around">
                 <ul class="mt-4">
-                    <li v-for="(item, i) in store.cart" :key="i">
+                    <li v-for="(item, i) in store.cart" :key="i" class="d-flex">
                         <p> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span> x {{ item.quantity }}</p>
-                        <button class="my-button fa-solid fa-plus me-3"
-                            @click="addToCart(item)"></button>
-                        <button class="my-button fa-solid fa-minus "
-                            @click="removeFromCart(item)"></button>
+                        <div class="ps-2">
+                            <button class="my-button fa-solid fa-plus me-3"
+                                @click="addToCart(item)"></button>
+                            <button class="my-button fa-solid fa-minus "
+                                @click="removeFromCart(item)"></button>
+                        </div>
                     </li>
                 </ul>
                
@@ -28,7 +30,7 @@
                 <button class="btn-clear-cart" @click="clearCart()">Svuota</button>
 
                 <router-link :to="{ name: 'checkout' }" class="text-decoration-none">
-                    <button class="mb-5 btn-checkout">Vai al pagamento</button>
+                    <button class="mb-5 btn-checkout" @click="store.openCart = !store.openCart">Vai al pagamento</button>
                 </router-link>
             </div>
         </div>
