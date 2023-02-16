@@ -266,15 +266,23 @@ h3 span::before {
 }
 
 @keyframes profile {
-    0% {
+    0%, 100% {
         content: 'pizza'
     }
 
-    50% {
+    20% {
+        content: 'tajin'
+    }
+
+    40% {
         content: 'poké'
     }
 
-    100% {
+    60% {
+        content: 'tacos'
+    }
+
+    80% {
         content: 'sushi'
     }
 }
@@ -363,12 +371,20 @@ background: linear-gradient( $red 0%, $acqua 40%, $yellow 100%);
         border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
     }
 
-    33% {
+    20% {
         border-radius: 42% 28% 62% 18% / 28% 28% 89% 89%;
     }
 
-    66% {
+    40% {
         border-radius: 100% 56% 56% 100% / 100% 100% 79% 79%;
+    }
+
+    60% {
+        border-radius: 80% 76% 76% 65% / 92% 45% 54% 54%;
+    }
+
+    80% {
+        border-radius: 34% 66% 36% 34% / 34% 34% 59% 69%;
     }
 
 
