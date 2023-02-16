@@ -183,8 +183,6 @@ export const store = reactive({
                 { pagename: 'Github', url: '#', icon: 'fa-github' },
                 { pagename: 'Youtube', url: '#', icon: 'fa-youtube' }
             ]
-        }
-
-         
+        }         
     ],
 })
