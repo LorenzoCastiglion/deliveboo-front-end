@@ -33,17 +33,17 @@ export default {
             const index = parseInt(currentElement.getAttribute("data-index"), 10)
             const prevIndex = index === 0 ? null : index - 1
             const nextIndex = index === phrase.value.length - 1 ? null : index + 1
-            const prevPrevIndex = index === 0 ? null : index - 2
-            const nextNextIndex = index === phrase.value.length - 1 ? null : index + 2
+            // const prevPrevIndex = index === 0 ? null : index - 2
+            // const nextNextIndex = index === phrase.value.length - 1 ? null : index + 2
             const prevEl = prevIndex !== null && document.querySelector(`[data-index="${prevIndex}"]`)
             const nextEl = prevIndex !== null && document.querySelector(`[data-index="${nextIndex}"]`)
-            const prevPrevEl = prevIndex !== null && document.querySelector(`[data-index="${prevPrevIndex}"]`)
-            const nextNextEl = prevIndex !== null && document.querySelector(`[data-index="${nextNextIndex}"]`)
+            // const prevPrevEl = prevIndex !== null && document.querySelector(`[data-index="${prevPrevIndex}"]`)
+            // const nextNextEl = prevIndex !== null && document.querySelector(`[data-index="${nextNextIndex}"]`)
             e.target.classList.add("hovered")
             prevEl && prevEl.classList.add("hovered-adjacent")
             nextEl && nextEl.classList.add("hovered-adjacent")
-            prevPrevEl && prevPrevEl.classList.add("hovered-adjacent-plus")
-            nextNextEl && nextNextEl.classList.add("hovered-adjacent-plus")
+            // prevPrevEl && prevPrevEl.classList.add("hovered-adjacent-plus")
+            // nextNextEl && nextNextEl.classList.add("hovered-adjacent-plus")
         }
 
         return {
@@ -89,14 +89,14 @@ h3 {
 .hovered {
     color:$acqua;
     font-weight: 900;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     
 }
 
 .hovered-adjacent {
     color: $acqua;
-    font-weight: 600;
-    letter-spacing: 0.09em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
    
 }
 .hovered-adjacent-plus{

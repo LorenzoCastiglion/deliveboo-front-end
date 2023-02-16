@@ -47,7 +47,7 @@ const router = createRouter({
         },
 
         {
-            path: '/:catchAll(.*)',
+            path: '/:catchAll(.*)*',
             name: 'Error404',
             component: () => import('../src/components/Error404.vue')
         },
