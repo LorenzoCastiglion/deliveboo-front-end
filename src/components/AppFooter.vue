@@ -12,11 +12,13 @@
             <div v-for="(item, index) in store.footerItems" :key="index" class="col-14 col-sm-4 d-none d-md-block">
                 <ul>
                     <h3>{{ item.label }}<span class="dot">.</span></h3>
-                    <li v-for="x in item.storeItem" class="hover-underline-animation">
-                        <template v-if="x.icon">
-                            <i :class="'fa-brands' + ' ' + x.icon"></i>
-                        </template>
-                        {{ x.pagename }}
+                    <li v-for="x in item.storeItem">
+                        <a :href="x.url" class="hover-underline-animation text-decoration-none">
+                            <template v-if="x.icon">
+                                <i :class="'fa-brands' + ' ' + x.icon"></i>
+                            </template>
+                            {{ x.pagename }}
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -39,11 +41,13 @@
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <ul>
-                                    <li v-for="x in item.storeItem" class="hover-underline-animation">
-                                        <template v-if="x.icon">
-                                            <i :class="'fa-brands' + ' ' + x.icon"></i>
-                                        </template>
-                                        {{ x.pagename }}
+                                    <li v-for="x in item.storeItem">
+                                        <a :href="x.url" class="hover-underline-animation">
+                                            <template v-if="x.icon">
+                                                <i :class="'fa-brands' + ' ' + x.icon"></i>
+                                            </template>
+                                            {{ x.pagename }}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -105,7 +109,7 @@ ul {
         margin-right: 20px;
     }
 
-    li {
+    li, a {
         font-size: 14px;
         font-weight: 300;
         list-style: none;
