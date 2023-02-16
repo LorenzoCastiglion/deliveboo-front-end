@@ -14,6 +14,10 @@
                 <ul class="mt-4">
                     <li v-for="(item, i) in store.cart" :key="i">
                         <p> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span> x {{ item.quantity }}</p>
+                        <button class="my-button fa-solid fa-plus me-3"
+                            @click="addToCart(item)"></button>
+                        <button class="my-button fa-solid fa-minus "
+                            @click="removeFromCart(item)"></button>
                     </li>
                 </ul>
                
@@ -55,7 +59,53 @@ export default {
                 this.plates = response.data.results;
             })
         },
-        
+        addToCart(item) {
+            // if (!store.cart) {
+            //     store.cart = [];
+            // }
+            let plateInCart = false;
+            for (let i = 0; i < store.cart.length; i++) {
+                if (store.cart[i].slug === item.slug) {
+                    store.cart[i].quantity++;
+                    plateInCart = true;
+                    break;
+                }
+            }
+            if (!plateInCart) {
+                for (let i = 0; i < store.cart.length; i++) {
+                    if (item.restaurant_id !== store.cart[i].restaurant_id) {
+                        if (confirm('Vuoi svuotare il carrello e ordinare dal nuovo ristorante?')) {
+                            store.cart = [];
+                            console.log('non corrispondono');
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                item.quantity = 1;
+                store.cart.push(item);
+            }
+            localStorage.setItem("cart", JSON.stringify(store.cart));
+            console.log("Piatto aggiunto al carrello");
+            console.log(store.cart);
+        },
+
+        removeFromCart(item) {
+            if (store.cart.length > 0) {
+                for (let i = 0; i < store.cart.length; i++) {
+                    if (store.cart[i].slug === item.slug) {
+                        store.cart[i].quantity--;
+                        if (store.cart[i].quantity === 0) {
+                            store.cart.splice(i, 1);
+                        }
+                        break;
+                    }
+                }
+                localStorage.setItem("cart", JSON.stringify(store.cart));
+                console.log("Plate rimosso dal carrello");
+            }
+            console.log(store.cart);
+        },
         clearCart() {
             store.cart = [];
             localStorage.removeItem("cart");
@@ -122,7 +172,27 @@ export default {
         font-weight: 900;
         
     }
+    .my-button {
+        background-color: $red;
+        border: none;
+        color: $yellow;
+        // padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: 0.5s ease-in-out;
 
+        &:hover{
+            transform: scale(1.2);
+            
+            color: $yellow;
+    }
+    }
     .btn-clear-cart {
         padding: 0.5em 1.7em;
         display: block;
