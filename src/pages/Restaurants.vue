@@ -94,15 +94,10 @@ watch: {
 
   methods: {
 
- 
-
-
-
-
     resetFilter() {
       this.showRes = false;
       this.selectedType = [];
-      this.$router.replace( {name: '/restaurants' });
+    //   this.$router.replace( {name: '/restaurants' });
       this.filteredRestaurants = [];
       console.log(this.filteredRestaurants);
       
@@ -133,12 +128,8 @@ watch: {
         this.filterRestaurants();
         // this.showRes = !this.showRes;
         console.log(this.showRes, 'sono switcher')
-    },
-
-    
+    },    
   },
-
-
 
 created() {
   this.getRestaurants();

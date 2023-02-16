@@ -86,7 +86,7 @@
                                             <p v-else="( plate.allergens )"> Non ci sono allergeni</p>
 
                                             <!-- <p>{{ plate.available == 1 ? 'Sì è disponibile' : 'No disponibile' }}</p> -->
-                                            <button class="my-button fa-solid fa-plus "
+                                            <button class="my-button fa-solid fa-plus me-3"
                                                 @click="addToCart(plate)"></button>
                                             <button class="my-button fa-solid fa-minus "
                                                 @click="removeFromCart(plate)"></button>
@@ -352,6 +352,7 @@ i {
 
     &:hover{
         transform: scale(1.2);
+        
         color: $yellow;
     }
 }
