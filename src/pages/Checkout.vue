@@ -117,7 +117,7 @@ import { store } from "../store";
 import Payment from "../components/Payment.vue";
 import useValidate from '@vuelidate/core';
 import { required, email } from '@vuelidate/validators'
-import { ref, onMounted } from "vue";
+
 
 export default {
     name: 'Checkout',
