@@ -10,15 +10,15 @@
             <h3 class="ms-4 text-uppercase text-center">Il tuo ordine</h3>
 
             <!-- lista piatti -->
-            <div class="product_list mt-5 d-flex justify-content-around">
+            <div class="product_list mt-5 px-4 d-flex justify-content-around">
                 <ul class="mt-4">
-                    <li v-for="(item, i) in store.cart" :key="i" class="d-flex align-items-center">
-                                        <div class="me-3 prev-img">
-                                            <img class="w-100" :src="item.image ? `${store.imagBasePath}${item.image}` : '../../public/img/boolean.png'"
+                    <li v-for="(item, i) in store.cart" :key="i" class="d-flex align-items-center justify-content-center">
+                                        <div class="me-3 prev-img col-4">
+                                            <img  :src="item.image ? `${store.imagBasePath}${item.image}` : '../../public/img/boolean.png'"
                                                 alt="">
                                         </div>
 
-                                        <div>
+                                        <div class="col-7">
                                             <p class="m-0"> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span></p>
                                             <p class="fw-bolder" >quantità: {{ item.quantity }}</p>
                                         </div>
@@ -265,6 +265,10 @@ export default {
     height: 50px;
     border-radius: 50%;
     overflow: hidden;;
+    img{
+    width: 100%;
+    height: 100%;
+    }
 }
 
 .blobtainer {
