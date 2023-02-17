@@ -72,11 +72,10 @@
                         <label for="address" class="form-label">Indirizzo</label>
                         <input class="form-control" type="text" name="address" id="address" placeholder="Indirizzo"
                             v-model="address" required />
+                        <span v-if="v$.address.$error" class="form-text text-danger">
+                            &#42; Campo obbligatorio
+                        </span>
                     </div>
-
-                    <span v-if="v$.address.$error" class="form-text text-danger">
-                        &#42; Campo obbligatorio
-                    </span>
 
                     <div class="input mb-5 col-md-6 col-sm-12">
                         <label for="phone" class="form-label">Telefono</label>
