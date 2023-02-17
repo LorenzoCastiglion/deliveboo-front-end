@@ -102,9 +102,9 @@
 
 
 
+        <!-- -->
 
-
-        <section v-if="prova" class="mt-5 mx-5 px-5">
+        <section v-if="prova"   class="mt-5 col-4 text-center m-auto pay">
             <Payment />
         </section>
     </div>
@@ -406,4 +406,8 @@ button {
     background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22603.23%22 height=%22681.692%22 viewBox=%22206.377 93.308 603.23 681.692%22%3E%3Cdefs%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M768 619.5Q691 739 562 767t-256.5-42q-127.5-70-91-207.5t107.5-313q71-175.5 231.5-74t226 235.5Q845 500 768 619.5Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.35 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22%239BC1BC%22 d=%22M768 619.5Q691 739 562 767t-256.5-42q-127.5-70-91-207.5t107.5-313q71-175.5 231.5-74t226 235.5Q845 500 768 619.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 
 }
+
+// payment
+
+
 </style>

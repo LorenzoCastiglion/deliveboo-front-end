@@ -12,10 +12,19 @@
             <!-- lista piatti -->
             <div class="product_list mt-5 d-flex justify-content-around">
                 <ul class="mt-4">
-                    <li v-for="(item, i) in store.cart" :key="i" class="d-flex">
-                        <p> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span> x {{ item.quantity }}</p>
-                        <div class="ps-2">
-                            <button class="my-button fa-solid fa-plus me-3"
+                    <li v-for="(item, i) in store.cart" :key="i" class="d-flex align-items-center">
+                                        <div class="me-3 prev-img">
+                                            <img class="w-100" :src="item.image ? `${store.imagBasePath}${item.image}` : '../../public/img/boolean.png'"
+                                                alt="">
+                                        </div>
+
+                                        <div>
+                                            <p class="m-0"> <span class="fw-bold fs-4">{{ truncate(item.name, 15) }}</span></p>
+                                            <p class="fw-bolder" >quantità: {{ item.quantity }}</p>
+                                        </div>
+                        
+                        <div class="ps-2 align-self-baseline row col-2 ms-2">
+                            <button class="my-button fa-solid fa-plus me-2"
                                 @click="addToCart(item)"></button>
                             <button class="my-button fa-solid fa-minus "
                                 @click="removeFromCart(item)"></button>
@@ -187,7 +196,7 @@ export default {
         transition-duration: 0.4s;
         cursor: pointer;
         border-radius: 12px;
-        transition: 0.5s ease-in-out;
+        transition: 0.2s ease-in-out;
 
         &:hover{
             transform: scale(1.2);
@@ -249,6 +258,13 @@ export default {
             box-shadow: 0 0 0 0 black;
         }
     }
+}
+
+.prev-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;;
 }
 
 .blobtainer {
