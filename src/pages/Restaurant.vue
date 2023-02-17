@@ -255,7 +255,7 @@ export default {
                         store.newFood = plate
                         this.showModal = true
 
-
+                        return;
 
                     } else {
 
