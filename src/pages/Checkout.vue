@@ -16,7 +16,7 @@
             <div class="blob2"></div>
         </div>
 
-      
+
 
         <div class="container my-5 d-flex flex-column justify-content-center align-items-center">
 
@@ -86,11 +86,12 @@
 
                     <div class="mb-5 col-md-6 col-sm-12">
                         <label for="phone" class="form-label "></label>
-                        <button class="mt-3 m-auto btn btn-primary " @click.prevent="order()">Invia i dati per il tuo ordine</button>
+                        <button class="mt-3 m-auto btn btn-primary " @click.prevent="order()">Invia i dati per il tuo
+                            ordine</button>
                     </div>
-                  
+
                 </form>
-                
+
             </div>
 
 
@@ -101,12 +102,13 @@
         </div>
 
 
+        <Transition name="bounce">
+            <section v-if="prova" class="mt-5 col-4 text-center m-auto pay">
+                <Payment />
+            </section>
+        </Transition>
 
-        <!-- -->
 
-        <section v-if="prova"   class="mt-5 col-4 text-center m-auto pay">
-            <Payment />
-        </section>
     </div>
 
 </template>
@@ -279,35 +281,35 @@ input {
     border-color: $red;
 }
 
-h1{
+h1 {
     font-size: 55px;
     font-weight: 900;
     font-stretch: extra-condensed;
 }
 
-p{
+p {
     font-weight: 700;
     font-stretch: extra-condensed;
-   font-size: 30px;
-    
+    font-size: 30px;
+
 }
 
-.quantita{
+.quantita {
     font-weight: 700;
     font-stretch: extra-condensed;
-   font-size: 30px;
-   color: $red;
-   margin: 0 10px;
-   transform: rotate(15deg);
-   
+    font-size: 30px;
+    color: $red;
+    margin: 0 10px;
+    transform: rotate(15deg);
+
 }
 
-.totale{
+.totale {
     margin-left: 20px;
     font-weight: 700;
     font-stretch: extra-condensed;
-   font-size: 50px;
-   color: $red;
+    font-size: 50px;
+    color: $red;
 }
 
 // BOTTONI
@@ -409,5 +411,34 @@ button {
 
 // payment
 
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-out .5s;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
 
 </style>

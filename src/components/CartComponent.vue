@@ -190,9 +190,9 @@ export default {
         // padding: 10px 24px;
         text-align: center;
         text-decoration: none;
-        display: inline-block;
-        font-size: 25px;
-        margin: 4px 2px;
+       
+        font-size: 20px;
+        margin: 3px 0;
         transition-duration: 0.4s;
         cursor: pointer;
         border-radius: 12px;

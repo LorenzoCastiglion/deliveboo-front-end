@@ -4,15 +4,17 @@
 
         <div class="container pt-5">
 
+            <Transition name="slide-fade">
+                <div v-if="showModal" class="modal">
+                    <div class="blob"></div>
+                    <p>Vuoi svuotare il carrello e ordinare da questo ristorante?</p>
+                    <button class="mod-button" @click="addNewPlate()">Sì</button>
+                    <button class="mod-button" @click="hideModal">No</button>
+                </div>
+            </Transition>
 
-            <div v-if="showModal" class="modal">
-                <div class="blob"></div>
-                <p>Vuoi svuotare il carrello e ordinare da questo ristorante?</p>
-                <button class="mod-button" @click="addNewPlate()">Sì</button>
-                <button class="mod-button" @click="hideModal">No</button>
-            </div>
 
-            <div class="d-flex justify-content-around gap-2 flex-wrap">
+            <div class="d-flex justify-content-around  gap-2 flex-wrap">
                 <div class="">
                     <div class="blob-img">
                         <img class="w-100 h-100 bg-danger"
@@ -23,18 +25,18 @@
                 <!-- Ristorante Dettagli  -->
                 <div class="col-md-6 col-sm-12">
                     <h1 class="text-capitalize">{{ restaurant.name }}</h1>
-                    <div class=" d-flex flex-column">
-                        <p class="text-capitalize"><i class="fa-solid fa-location-dot"></i> &nbsp;{{
+                    <div class=" d-flex flex-column rest-info">
+                        <p class="text-capitalize"><i class="fa-solid fa-location-dot"></i>{{
                             restaurant.address
                         }} </p>
-                        <p><i class="fa-solid fa-phone"></i> &nbsp;{{ restaurant.phone }} </p>
-                        <p><i class="fa-solid fa-calendar"></i> &nbsp;{{ restaurant.opening_days }} </p>
-                        <p><i class="fa-solid fa-clock"></i> &nbsp;{{ truncate(restaurant.opening_hours, 6) }} - {{
+                        <p><i class="fa-solid fa-phone"></i>{{ restaurant.phone }} </p>
+                        <p><i class="fa-solid fa-calendar"></i>{{ restaurant.opening_days }} </p>
+                        <p><i class="fa-solid fa-clock"></i>{{ truncate(restaurant.opening_hours, 6) }} - {{
                             truncate(restaurant.closing_hours, 6)
                         }} </p>
 
                     </div>
-                    <div class=" overflow-scroll description">
+                    <div class=" overflow-scroll description rest-info">
                         <p>{{ restaurant.description }}</p>
                     </div>
                 </div>
@@ -72,7 +74,7 @@
 
 
                     <!-- MENU PIATTI -->
-                    <div class="mt-5">
+                    <div >
                         <h4>Scegli i tuoi piatti</h4>
                         <div class="container pt-2 pb-4">
                             <div class="row g-3 justify-content-around">
@@ -87,8 +89,8 @@
 
                                         <FadeIntoView>
 
-                                            <div>
-                                                <p class="fw-semibold">{{ plate.name }}</p>
+                                            <div class=" card-text">
+                                                <p class="">{{ plate.name }}</p>
                                                 <p>{{ plate.price }} &#8364;</p>
 
                                                 <p v-if="(plate.allergens)">Allergeni: {{ plate.allergens }} </p>
@@ -332,7 +334,7 @@ export default {
 
 <style lang="scss" scoped>
 @use './../assets/styles/partials/variables' as *;
-
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
 
 
 // Modale
@@ -457,6 +459,16 @@ h4 {
 
 i {
     color: $red;
+    margin-right: 10px;
+}
+
+.rest-info {
+    p {
+        font-size: 1.5rem;
+        font-weight: 400;
+
+        font-stretch: extra-condensed;
+    }
 }
 
 .description {
@@ -475,8 +487,32 @@ i {
     width: 150px;
     height: 150px;
     // object-fit: cover;
+    
     border-radius: 50%;
+
 }
+
+.card-text{
+        p{
+            font-size: 18px;
+    font-weight: 600;
+    font-stretch: ultra-condensed;
+}
+
+p:first-child{
+    margin: 0;
+    color: $red;
+    font-weight: 900;
+    font-size: 25px;
+    font-stretch: ultra-expanded;
+}
+
+p:nth-child(2){
+    font-family: 'Sigmar One', cursive;
+    font-size: 30px;
+    margin: 0;
+}
+    }
 
 @media (max-width: 1024px) {
     .card-body img {
@@ -601,6 +637,20 @@ i {
         border-radius: 100% 56% 56% 100% / 100% 100% 79% 79%;
     }
 
+}
 
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
