@@ -101,7 +101,7 @@
                                                     @click="addToCart(plate)"></button>
                                                 <button class="my-button fa-solid fa-minus me-3"
                                                     @click="removeFromCart(plate)"></button>
-                                                <!-- <p>quantità: {{ plate.quantity }}</p> -->
+                                                <p class="mt-2">quantità: {{ getQuantityInCart(plate) }}</p>
                                             </div>
 
                                         </FadeIntoView>
@@ -303,7 +303,7 @@ export default {
                     }
                 }
                 localStorage.setItem("cart", JSON.stringify(store.cart));
-                console.log("Plate rimosso dal carrello");
+                console.log("Piatto rimosso dal carrello");
             }
             console.log(store.cart);
         },
@@ -313,7 +313,14 @@ export default {
             console.log(store.cart);
             console.log("Carrello svuotato");
         },
-
+        getQuantityInCart(plate) {
+            const itemIndex = store.cart.findIndex(item => item.id === plate.id);
+            if (itemIndex === -1) {
+                return 0;
+            } else {
+                return store.cart[itemIndex].quantity;
+            }
+        },
     },
 
     mounted() {
