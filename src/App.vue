@@ -7,14 +7,16 @@
 </main>
 
 
-<!-- carrello -->
-  <div class="side_menu_shop" @click="store.openCart = true">
-    <i class="fa-solid fa-cart-shopping" ></i>
-    <Transition class="cart_animation">
-      <div class="cart_counter" v-if="store.cart.length > 0">
-        <span>{{ cartTotalQuantity }}</span>
-      </div>
-    </Transition>
+
+  <div v-if="showCartBtn">
+    <div class="side_menu_shop" @click="store.openCart = true">
+      <i class="fa-solid fa-cart-shopping" ></i>
+      <Transition class="cart_animation">
+        <div class="cart_counter" v-if="store.cart.length > 0">
+          <span>{{ cartTotalQuantity }}</span>
+        </div>
+      </Transition>
+    </div>
   </div>
   <Transition name="openCart">
     <CartComponent v-if="store.openCart" />
@@ -57,6 +59,9 @@ import CartComponent from './components/CartComponent.vue';
           total += store.cart[i].quantity
       }
       return total
+    },
+    showCartBtn(){
+      return this.$route.name !== 'checkout'
     }
   },
   mounted(){
@@ -64,7 +69,7 @@ import CartComponent from './components/CartComponent.vue';
     if(cartItem){
       this.store.cart = JSON.parse(cartItem)
     }
-  }
+  },
 
   
 }
