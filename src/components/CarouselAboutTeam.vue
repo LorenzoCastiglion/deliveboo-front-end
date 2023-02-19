@@ -12,7 +12,7 @@
                         </div>
                         <h3 class="w-60 m-auto">{{ slide.name }}</h3>
                             <div class="cont-h">
-                                <a class="" v-bind:href="slide.git"><i class="fa-brands fa-3x  fa-github cont-link "></i></a>
+                                <a target="_blank" class="" v-bind:href="slide.git"><i class="fa-brands fa-3x  fa-github cont-link "></i></a>
                             </div>
                         
 
