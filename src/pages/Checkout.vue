@@ -33,13 +33,13 @@
                 <p class="text-uppercase"> totale: <span class="totale">{{ store.total_amount }} €</span></p>
             </div>
 
-            <div v-if="!prova">
+            <div v-if="!payment">
                 <h1 class="text-capitalize text-center mt-4">Inserisci i tuoi dati</h1>
                 <form action="" class="w-75 m-auto row">
 
                     <div class="input mb-2 col-md-6 col-sm-12">
-                        <label for="name" class="form-label">Nome</label>
-                        <input class="form-control" type="text" name="name" id="name" placeholder="Nome" v-model="name"
+                        <label for="name" class="form-label">Nome *</label>
+                        <input class="form-control text-capitalize" type="text" name="name" id="name" placeholder="Nome" v-model="name"
                             required />
 
                         <span v-if="v$.name.$error" class="form-text text-danger">
@@ -49,8 +49,8 @@
                     </div>
 
                     <div class="input mb-2 col-md-6 col-sm-12">
-                        <label for="last_name" class="form-label">Cognome</label>
-                        <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Cognome"
+                        <label for="last_name" class="form-label">Cognome *</label>
+                        <input class="form-control text-capitalize" type="text" name="last_name" id="last_name" placeholder="Cognome"
                             v-model="last_name" required />
 
                         <span v-if="v$.last_name.$error" class="form-text text-danger">
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="input mb-2 col-md-6 col-sm-12">
-                        <label for="email" class="form-label">E-mail</label>
+                        <label for="email" class="form-label">E-mail *</label>
                         <input class="form-control" type="email" name="email" id="email" placeholder="E-mail"
                             v-model="email" required />
                         <span v-if="v$.email.$error" class="form-text text-danger">
@@ -69,8 +69,8 @@
                     </div>
 
                     <div class="input mb-2 col-md-6 col-sm-12">
-                        <label for="address" class="form-label">Indirizzo</label>
-                        <input class="form-control" type="text" name="address" id="address" placeholder="Indirizzo"
+                        <label for="address" class="form-label">Indirizzo *</label>
+                        <input class="form-control text-capitalize" type="text" name="address" id="address" placeholder="Indirizzo"
                             v-model="address" required />
                         <span v-if="v$.address.$error" class="form-text text-danger">
                             &#42; Campo obbligatorio
@@ -85,15 +85,15 @@
 
                     <div class="mb-5 col-md-6 col-sm-12">
                         <label for="phone" class="form-label "></label>
-                        <button class="mt-3 m-auto btn btn-primary " @click.prevent="order()">Invia i dati per il tuo
+                        <button v-if="store.total_amount" class="mt-3 m-auto btn btn-primary " @click.prevent="order()">Invia i dati per il tuo
                             ordine</button>
                     </div>
 
                 </form>
-
+                <button class="btn-goback m-auto" @click="goBack">Indietro</button>
             </div>
 
-
+           
 
 
 
@@ -102,7 +102,7 @@
 
 
         <Transition name="bounce">
-            <section v-if="prova" class="mt-5 col-4 text-center m-auto pay">
+            <section v-if="payment" class="mt-5 col-4 text-center m-auto pay">
                 <Payment />
             </section>
         </Transition>
@@ -138,7 +138,7 @@ export default {
             email: '',
             address: '',
             phone: '',
-            prova: false,
+            payment: false,
 
 
 
@@ -220,10 +220,10 @@ export default {
                 console.log(response.data.results)
                 console.log(response.data.id)
             })
-            // this.prova = true;
+            // this.payment = true;
             this.v$.$validate()
             if (!this.v$.$error) {
-                this.prova = true;
+                this.payment = true;
             } else {
                 console.log(this.v$)
             }
@@ -237,6 +237,9 @@ export default {
                 total += store.cart[i].price * store.cart[i].quantity
             }
             store.total_amount = total
+        },
+        goBack() {
+            window.history.back();
         }
     },
     mounted() {
@@ -342,7 +345,34 @@ button {
 
 }
 
+.btn-goback {
+    margin-top: 15px;
+    padding: 0.5em 1.7em;
+    display: block;
 
+
+    border-radius: 25px;
+    border: none;
+
+    font-weight: bold;
+    background: $yellow;
+    color: $red;
+    transition: .4s ease-in-out;
+
+
+    &:hover {
+        background: $acqua;
+        color: $yellow;
+        text-decoration: none;
+        transform: translateY(-4px) translateX(-2px);
+        box-shadow: 2px 5px 0 0 black;
+    }
+
+    &:active {
+        transform: translateY(2px) translateX(1px);
+        box-shadow: 0 0 0 0 black;
+    }
+}
 // moving divs
 
 .box {

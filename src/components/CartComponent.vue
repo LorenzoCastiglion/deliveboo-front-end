@@ -39,7 +39,7 @@
                 <button class="btn-clear-cart" @click="clearCart()">Svuota</button>
 
                 <router-link :to="{ name: 'checkout' }" class="text-decoration-none">
-                    <button class="mb-5 btn-checkout" @click="store.openCart = !store.openCart">Vai al pagamento</button>
+                    <button v-if="cartTotal != 0" class="mb-5 btn-checkout" @click="store.openCart = !store.openCart">Prosegui</button>
                 </router-link>
             </div>
         </div>

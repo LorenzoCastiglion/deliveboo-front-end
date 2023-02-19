@@ -1,7 +1,7 @@
 <template>
     <form id="payment-form" :action="`${store.apiBaseUrl}/payment`" method="post">
         <div id="dropin-container"></div>
-        <input type="submit" value="Procedi al pagamento" />
+        <input class="prova" type="submit" value="Procedi al pagamento" />
         <input type="hidden" id="nonce" name="payment_method_nonce"/>
     </form>
 </template>
@@ -70,5 +70,24 @@ import axios from 'axios';
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/styles/partials/variables" as *;
+.prova {
+    background-color: $red;
+    border: none;
+    color: $yellow;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 18px;
+    margin: 3px 0;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
 
+    &:hover{
+        transform: scale(1.05);
+    }
+}
 </style>
